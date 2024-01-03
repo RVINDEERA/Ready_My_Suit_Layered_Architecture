@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="paneLogin" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.rms.controller.LoginFormController">
+   <children>
+      <ImageView fitHeight="500.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/login.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="312.0" prefHeight="500.0" prefWidth="438.0">
+         <children>
+            <Label layoutX="118.0" layoutY="146.0" text="Username" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="87.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/user.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="118.0" layoutY="221.0" text="Password" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="87.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/password.png" />
+               </image>
+            </ImageView>
+            <JFXButton buttonType="RAISED" layoutX="141.0" layoutY="320.0" onAction="#btnLoginOnAction" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 16;" text="Login" textFill="#f5ecec">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <TextField fx:id="txtUserName" accessibleRole="PARENT" focusTraversable="false" layoutX="87.0" layoutY="171.0" prefHeight="30.0" prefWidth="288.0" style="-fx-background-color: white; -fx-background-radius: 20;" />
+            <PasswordField fx:id="txtPassword" layoutX="87.0" layoutY="246.0" onAction="#txtLoginOnAction" prefHeight="30.0" prefWidth="288.0" style="-fx-background-color: white; -fx-background-radius: 20;" />
+            <Label layoutX="152.0" layoutY="379.0" text="Don't have an account ?" textFill="WHITE" />
+            <Hyperlink layoutX="149.0" layoutY="399.0" onAction="#hyperCreateAccOnAction" text="Create a new account">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

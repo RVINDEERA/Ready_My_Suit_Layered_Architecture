@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="paneShirtMeasurement" prefHeight="575.0" prefWidth="808.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.rms.controller.CoatMeasurementFormController">
+   <children>
+      <AnchorPane fx:id="paneShirtMeasurements" prefHeight="575.0" prefWidth="449.0">
+         <children>
+            <TextField fx:id="txtlength" layoutX="51.0" layoutY="213.0" prefHeight="24.0" prefWidth="111.0" />
+            <Label layoutX="51.0" layoutY="190.0" text="Length">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtShoulder" layoutX="51.0" layoutY="273.0" prefHeight="24.0" prefWidth="111.0" />
+            <Label layoutX="51.0" layoutY="250.0" text="Shoulder">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtCollar" layoutX="51.0" layoutY="333.0" prefHeight="24.0" prefWidth="111.0" />
+            <Label layoutX="51.0" layoutY="310.0" text="Collar">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtNeck" layoutX="51.0" layoutY="393.0" prefHeight="24.0" prefWidth="111.0" />
+            <Label layoutX="51.0" layoutY="370.0" text="Neck">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtChest" layoutX="252.0" layoutY="213.0" prefHeight="24.0" prefWidth="111.0" />
+            <Label layoutX="252.0" layoutY="190.0" prefHeight="18.0" prefWidth="73.0" text="Chest">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtSleeveLength" layoutX="252.0" layoutY="273.0" prefHeight="24.0" prefWidth="111.0" />
+            <Label layoutX="252.0" layoutY="250.0" prefHeight="18.0" prefWidth="133.0" text="Sleeve Length">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtWaist" layoutX="252.0" layoutY="333.0" prefHeight="24.0" prefWidth="111.0" />
+            <Label layoutX="252.0" layoutY="310.0" text="Waist">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnSave" buttonType="RAISED" layoutX="50.0" layoutY="492.0" onAction="#btnSaveOnAction" prefHeight="43.0" prefWidth="331.0" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="Save">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="21.0" layoutY="106.0" text="Measurement ID :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblMeasurementId" layoutX="162.0" layoutY="105.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="21.0" layoutY="73.0" prefHeight="18.0" prefWidth="133.0" text="Customer ID        :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCustomerID" layoutX="162.0" layoutY="72.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="21.0" layoutY="139.0" text="Date                    :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblDate" layoutX="162.0" layoutY="138.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtSearch" alignment="CENTER" layoutX="48.0" layoutY="18.0" onAction="#txtCustomerSearch" prefHeight="30.0" prefWidth="180.0" promptText="Search Customer" style="-fx-background-radius: 20;">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </TextField>
+            <ImageView fitHeight="18.0" fitWidth="22.0" layoutX="55.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/search.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="btnClear" buttonType="RAISED" layoutX="218.0" layoutY="442.0" onAction="#btnClearOnAction" prefHeight="43.0" prefWidth="162.0" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="Clear">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="50.0" layoutY="442.0" onAction="#btnUpdateOnAction" prefHeight="43.0" prefWidth="162.0" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="Update">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnNewCustomer" buttonType="RAISED" layoutX="237.0" layoutY="22.0" onAction="#btnNewCustomerOnAction" prefHeight="23.0" prefWidth="111.0" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="New Customer">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="256.0" layoutY="73.0" prefHeight="18.0" prefWidth="90.0" text="Name    :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCustomerName" layoutX="332.0" layoutY="72.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtElbow" layoutX="252.0" layoutY="393.0" prefHeight="24.0" prefWidth="111.0" />
+            <Label layoutX="252.0" layoutY="370.0" text="Elbow">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="458.0" prefHeight="575.0" prefWidth="350.0" style="-fx-background-color: rgba(229, 142, 38,1.0);">
+         <children>
+            <ImageView fitHeight="368.0" fitWidth="240.0" layoutX="60.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/coat%20final.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="45.0" layoutY="53.0" text="Coat Measurements">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="paneItem" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.rms.controller.ItemFormController">
+   <children>
+      <AnchorPane prefHeight="42.0" prefWidth="900.0" style="-fx-background-color: rgba(229, 142, 38,1.0);">
+         <children>
+            <Label alignment="BASELINE_LEFT" layoutX="54.0" layoutY="11.0" text="Item Form">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="21.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/hanger.png" />
+               </image>
+            </ImageView>
+            <Line endX="-100.0" endY="-29.0" layoutX="101.0" layoutY="31.0" startX="-100.0" startY="11.0" />
+         </children>
+      </AnchorPane>
+      <Line endX="351.0" layoutX="463.0" layoutY="663.0" startX="-378.0" stroke="ORANGE" />
+      <Label layoutX="364.0" layoutY="671.0" text="Ready My Suit Version 1.0" />
+      <TextField fx:id="txtItemId" layoutX="85.0" layoutY="139.0" onAction="#txtSearchOnAction" prefHeight="25.0" prefWidth="172.0" />
+      <Label layoutX="85.0" layoutY="112.0" text="Item Id ">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="122.0" layoutY="206.0" onAction="#btnSaveOnAction" prefHeight="36.0" prefWidth="87.0" ripplerFill="WHITE" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="Save">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="229.0" layoutY="206.0" onAction="#btnUpdateOnAction" prefHeight="36.0" prefWidth="87.0" ripplerFill="WHITE" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="Update">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="335.0" layoutY="206.0" onAction="#btnDeleteOnAction" prefHeight="36.0" prefWidth="87.0" ripplerFill="WHITE" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="Delete">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="tblItem" layoutX="529.0" layoutY="112.0" prefHeight="287.0" prefWidth="309.0">
+        <columns>
+          <TableColumn fx:id="colID" prefWidth="147.0" text="ID" />
+          <TableColumn fx:id="colType" prefWidth="161.0" text="Type" />
+        </columns>
+      </TableView>
+      <TextField fx:id="txtItemType" layoutX="302.0" layoutY="140.0" prefHeight="25.0" prefWidth="172.0" />
+      <Label layoutX="302.0" layoutY="113.0" text="Item Type">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

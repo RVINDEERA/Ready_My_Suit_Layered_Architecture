@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="paneRentCoat" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="860.0" prefWidth="1320.0" style="-fx-background-color: s; -fx-border-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.rms.controller.RentCoatFormController">
+   <children>
+      <Label layoutX="66.0" layoutY="114.0" prefHeight="18.0" prefWidth="137.0" text="Rent N0          :  ">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="1130.0" layoutY="393.0" onAction="#btnAddOnAction" prefHeight="35.0" prefWidth="154.0" ripplerFill="WHITE" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="Done">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="29.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/save.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="738.0" layoutY="106.0" onAction="#btnNewCustomerOnAction" prefHeight="35.0" prefWidth="68.0" ripplerFill="WHITE" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="New ">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="tblRent" layoutX="33.0" layoutY="460.0" prefHeight="267.0" prefWidth="1251.0" stylesheets="@../styles/table.css">
+        <columns>
+            <TableColumn fx:id="colCoatId" prefWidth="109.0" text="Coat ID" />
+            <TableColumn fx:id="colRentDate" prefWidth="155.0" text="Rent Date" />
+            <TableColumn fx:id="colReturnDate" prefWidth="171.0" text="Return Date" />
+            <TableColumn fx:id="colPrice" prefWidth="122.0" text="Price" />
+            <TableColumn fx:id="colSize" prefWidth="97.0" text="Size" />
+            <TableColumn fx:id="colType" prefWidth="144.0" text="Type" />
+            <TableColumn fx:id="colColour" prefWidth="108.0" text="Colour" />
+            <TableColumn fx:id="colMfgDate" prefWidth="118.0" text="Mfg Date" />
+            <TableColumn fx:id="colAvail" prefWidth="103.0" text="Availability" />
+            <TableColumn fx:id="colRemove" minWidth="0.0" prefWidth="123.0" text="Remove" />
+        </columns>
+      </TableView>
+      <Label fx:id="lblRentNo" layoutX="205.0" layoutY="114.0" prefHeight="21.0" prefWidth="129.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="417.0" layoutY="255.0" prefHeight="18.0" prefWidth="154.0" text="Customer ID      :">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="415.0" layoutY="185.0" text="Customer Name :">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCusName" layoutX="574.0" layoutY="184.0" prefHeight="21.0" prefWidth="154.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="853.0" layoutY="117.0" prefHeight="18.0" prefWidth="148.0" text="Coat ID           :  ">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="cmbCoatId" focusColor="#e58e26" layoutX="990.0" layoutY="118.0" onAction="#cmbCoatOnAction" prefHeight="28.0" prefWidth="172.0" unFocusColor="#e58e26" />
+      <Label layoutX="1110.0" layoutY="256.0" prefHeight="18.0" prefWidth="148.0" text="Unit Price        :">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblUnitPrice" layoutX="1231.0" layoutY="255.0" prefHeight="21.0" prefWidth="68.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="853.0" layoutY="256.0" prefHeight="18.0" prefWidth="129.0" text="Colour            :">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblColor" layoutX="974.0" layoutY="254.0" prefHeight="21.0" prefWidth="120.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="853.0" layoutY="187.0" prefHeight="18.0" prefWidth="137.0" text="Mfg Date        :">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="415.0" layoutY="116.0" prefHeight="18.0" prefWidth="157.0" text="Phone Number   :">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblMachineId12" layoutX="990.0" layoutY="125.0" prefHeight="21.0" prefWidth="154.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPhoneNmber" layoutX="573.0" layoutY="254.0" prefHeight="21.0" prefWidth="154.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnRentOrder" buttonType="RAISED" layoutX="1130.0" layoutY="735.0" onAction="#btnRentedOutOnAction" prefHeight="39.0" prefWidth="154.0" ripplerFill="WHITE" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="Place Order">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/order.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXComboBox fx:id="cmbRentalBond" focusColor="#e58e26" layoutX="204.0" layoutY="177.0" prefHeight="28.0" prefWidth="172.0" unFocusColor="#e58e26" />
+      <Label layoutX="64.0" layoutY="181.0" prefHeight="18.0" prefWidth="129.0" text="Rental Bond    :">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="855.0" layoutY="325.0" prefHeight="18.0" prefWidth="137.0" text="Type              :">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblType" layoutX="974.0" layoutY="325.0" prefHeight="21.0" prefWidth="120.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="1111.0" layoutY="187.0" prefHeight="18.0" prefWidth="129.0" text="Size                 :">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblSize" layoutX="1232.0" layoutY="186.0" prefHeight="21.0" prefWidth="58.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="65.0" layoutY="249.0" prefHeight="18.0" prefWidth="137.0" text="Rent Date       :">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblRentDate" layoutX="205.0" layoutY="250.0" prefHeight="21.0" prefWidth="154.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="64.0" layoutY="317.0" prefHeight="18.0" prefWidth="129.0" text="Return Date    :">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblMfgDate" layoutX="974.0" layoutY="187.0" prefHeight="21.0" prefWidth="129.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="1112.0" layoutY="325.0" prefHeight="18.0" prefWidth="137.0" text="Availablity      : ">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAvail" layoutX="1232.0" layoutY="325.0" prefHeight="21.0" prefWidth="50.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Line endX="100.0" endY="-14.0" layoutX="730.0" layoutY="418.0" startX="100.0" startY="-325.0" stroke="#e48602" strokeWidth="2.0" />
+      <Line endX="100.0" endY="-15.0" layoutX="292.0" layoutY="419.0" startX="100.0" startY="-325.0" stroke="#e48602" strokeWidth="2.0" />
+      <JFXButton fx:id="btnRentOrder1" buttonType="RAISED" layoutX="956.0" layoutY="735.0" onAction="#btnReportOnActoion" prefHeight="39.0" prefWidth="154.0" ripplerFill="WHITE" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="REPORT">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <TextField fx:id="txtPhoneNumber" layoutX="573.0" layoutY="113.0" onAction="#txtPhoneNumberOnAction" prefHeight="24.0" prefWidth="154.0" />
+      <Label fx:id="lblReturnDate" layoutX="205.0" layoutY="319.0" prefHeight="21.0" prefWidth="154.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <AnchorPane prefHeight="54.0" prefWidth="1320.0" style="-fx-background-color: #1B1B1B;">
+         <children>
+            <Label layoutX="72.0" layoutY="12.0" text="Rent Coat" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="40.0" fitWidth="36.0" layoutX="26.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/whitecoat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

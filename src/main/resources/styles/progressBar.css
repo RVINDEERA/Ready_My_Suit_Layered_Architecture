@@ -1,0 +1,4 @@
+.progress-bar {
+    -fx-box-border: #1B1B1B1B;
+    -fx-accent:  rgba(229, 142, 38,1.0);
+}

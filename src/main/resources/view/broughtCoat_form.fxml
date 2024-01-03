@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="paneCustomer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="860.0" prefWidth="1320.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.rms.controller.BroughtCoatFormController">
+   <children>
+      <TableView fx:id="tblCoatReturn" fixedCellSize="-2.0" layoutX="16.0" layoutY="138.0" prefHeight="628.0" prefWidth="1289.0" stylesheets="@../styles/table.css">
+        <columns>
+          <TableColumn fx:id="colRentId" prefWidth="111.0" text="Rent ID" />
+          <TableColumn fx:id="colCustomerId" prefWidth="119.0" text="Customer ID" />
+            <TableColumn fx:id="colName" prefWidth="126.0" text="Name" />
+            <TableColumn fx:id="colPhone" prefWidth="162.0" text="Phone Number" />
+            <TableColumn fx:id="colCoatId" prefWidth="141.0" text="Coat ID" />
+            <TableColumn fx:id="colBond" prefWidth="130.0" text="Bond" />
+            <TableColumn fx:id="colRentDate" prefWidth="186.0" text="Rent Date" />
+            <TableColumn fx:id="colReturnDate" prefWidth="152.0" text="Return Date" />
+            <TableColumn fx:id="colHandedOver" prefWidth="162.0" text="Handed Over" />
+        </columns>
+      </TableView>
+      <Label fx:id="lblCustomerId" layoutX="214.0" layoutY="111.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="-2.0" prefHeight="54.0" prefWidth="1320.0" style="-fx-background-color: #1B1B1B;">
+         <children>
+            <Label layoutX="72.0" layoutY="12.0" text="Customers " textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="40.0" fitWidth="36.0" layoutX="26.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/customer.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

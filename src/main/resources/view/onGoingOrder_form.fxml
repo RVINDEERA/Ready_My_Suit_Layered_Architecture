@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="paneCustomer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="860.0" prefWidth="1320.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.rms.controller.OnGoingOrderFormController">
+   <children>
+      <TextField fx:id="txtStatus" layoutX="593.0" layoutY="111.0" prefHeight="25.0" prefWidth="172.0" promptText="DONE">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Label layoutX="593.0" layoutY="84.0" text="Status">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtOrderId" layoutX="362.0" layoutY="111.0" prefHeight="25.0" prefWidth="172.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Label layoutX="362.0" layoutY="84.0" text="Order Id">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="834.0" layoutY="102.0" onAction="#btnUpdateOnAction" prefHeight="37.0" prefWidth="120.0" ripplerFill="WHITE" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="Update">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/update.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <TableView fx:id="tblOrder" layoutX="49.0" layoutY="278.0" prefHeight="474.0" prefWidth="1222.0" stylesheets="@../styles/table.css">
+        <columns>
+          <TableColumn fx:id="colOrderId" prefWidth="113.0" text="Order ID" />
+          <TableColumn fx:id="colDate" prefWidth="141.0" text="Date" />
+            <TableColumn fx:id="colCustomerId" prefWidth="134.0" text="Customer ID" />
+            <TableColumn fx:id="colTailorId" prefWidth="147.0" text="Tailor ID" />
+            <TableColumn fx:id="colFullAmount" prefWidth="158.0" text="FULL Amunt" />
+            <TableColumn fx:id="colAdvance" prefWidth="162.0" text="Advance" />
+            <TableColumn fx:id="colBalance" prefWidth="136.0" text="Balance" />
+            <TableColumn fx:id="colStatus" prefWidth="98.0" text="Status" />
+            <TableColumn fx:id="colCompleteDate" prefWidth="132.0" text="Comlpete Date" />
+        </columns>
+      </TableView>
+      <TextField fx:id="txtCustomerId2" alignment="CENTER" layoutX="535.0" layoutY="199.0" onAction="#txtSearch" prefHeight="40.0" prefWidth="251.0" promptText="Search Order " style="-fx-background-radius: 20;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></TextField>
+      <ImageView fitHeight="32.0" fitWidth="27.0" layoutX="552.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/search.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="-2.0" prefHeight="54.0" prefWidth="1320.0" style="-fx-background-color: #1B1B1B;">
+         <children>
+            <Label layoutX="72.0" layoutY="12.0" text="Orders" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="40.0" fitWidth="36.0" layoutX="26.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/whiteOrders.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

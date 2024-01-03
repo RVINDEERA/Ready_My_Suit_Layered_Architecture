@@ -1,0 +1,9 @@
+.default_button{
+    -fx-background-color: rgba(27, 27, 27, 0.11);
+}
+.select_button{
+    -fx-background-color: rgb(27, 27, 27);
+}
+.button:hover {
+    -fx-background-color:  rgba(229, 142, 38,1.0);
+}

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="paneMain" maxHeight="900.0" maxWidth="1600.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.rms.controller.MainFormController">
+   <children>
+      <AnchorPane maxHeight="900.0" prefHeight="900.0" prefWidth="280.0" style="-fx-background-color: #1B1B1B;">
+         <children>
+            <VBox layoutY="186.0" maxHeight="562.0" prefHeight="555.0" prefWidth="280.0" style="-fx-background-color: #1B1B1B;">
+               <children>
+                  <JFXButton fx:id="btnMain" alignment="BASELINE_LEFT" onAction="#btnHomeOnAction" prefHeight="80.0" prefWidth="280.0" ripplerFill="WHITE" stylesheets="@../styles/main_form.css" text="Home" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/home.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="btnMain" alignment="BASELINE_LEFT" onAction="#btnCustomersOnAction" prefHeight="80.0" prefWidth="280.0" ripplerFill="WHITE" stylesheets="@../styles/main_form.css" text="Customers" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/customer.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="btnMain" alignment="BASELINE_LEFT" onAction="#btnCoatOnAction" prefHeight="80.0" prefWidth="280.0" ripplerFill="WHITE" stylesheets="@../styles/main_form.css" text="Coats" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/whitecoat.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="btnMain" alignment="BASELINE_LEFT" onAction="#btnTailorsOnAction" prefHeight="80.0" prefWidth="280.0" ripplerFill="WHITE" stylesheets="@../styles/main_form.css" text="Tailors" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/whitetailor.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="btnMain" alignment="BASELINE_LEFT" onAction="#btnMachineOnAction" prefHeight="80.0" prefWidth="280.0" ripplerFill="WHITE" stylesheets="@../styles/main_form.css" text="Machines" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/machine.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="btnMain" alignment="BASELINE_LEFT" buttonType="RAISED" onAction="#btnFabricsOnAction" prefHeight="80.0" prefWidth="280.0" ripplerFill="WHITE" stylesheets="@../styles/main_form.css" text="Fabrics" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/fabric.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="btnMain1" alignment="BASELINE_LEFT" buttonType="RAISED" onAction="#btnOrdersOnAction" prefHeight="80.0" prefWidth="280.0" ripplerFill="WHITE" stylesheets="@../styles/main_form.css" text="Orders" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/whiteOrders.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </VBox>
+            <JFXButton fx:id="btnMain" alignment="BASELINE_LEFT" buttonType="RAISED" layoutY="754.0" onAction="#btnLogoutOnAction" prefHeight="80.0" prefWidth="280.0" ripplerFill="WHITE" stylesheets="@../styles/main_form.css" text="Logout" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icon/logout.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <ImageView fitHeight="156.0" fitWidth="120.0" layoutX="80.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/rmslogo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneDashboard" layoutX="280.0" layoutY="40.0" maxHeight="900.0" maxWidth="1320.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="860.0" prefWidth="1320.0" style="-fx-background-color: #413white39;" />
+      <AnchorPane layoutX="280.0" prefHeight="40.0" prefWidth="1320.0" style="-fx-background-color: rgba(229, 142, 38,1.0);">
+         <children>
+            <Label layoutX="914.0" layoutY="12.0" text="Date :">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblDate" layoutX="962.0" layoutY="13.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="1117.0" layoutY="11.0" text="Time :">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTime" layoutX="1169.0" layoutY="12.0" prefHeight="18.0" prefWidth="98.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

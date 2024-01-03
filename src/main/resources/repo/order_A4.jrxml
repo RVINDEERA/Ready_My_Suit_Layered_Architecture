@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="order_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6e75f567-bb26-456f-9921-d298c361d040">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ReadyMySuitDataAdapter"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<queryString language="SQL">
+		<![CDATA[select a.customerId,a.firstName,a.address,a.phoneNumber,b.orderId,b.date,b.fullAmount,b.advance,b.balance,b.completeDate,c.length,c.chest,c.shoulder,c.sleeveLength,c.collar,c.cuff,c.waist from customer a join orders b on a.customerId = b.customerId join shirtMeasurements  c on  b.customerId  = c.customerId where  orderId='O008']]>
+	</queryString>
+	<field name="customerId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="customerId"/>
+		<property name="com.jaspersoft.studio.field.label" value="customerId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="firstName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="firstName"/>
+		<property name="com.jaspersoft.studio.field.label" value="firstName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="address" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="address"/>
+		<property name="com.jaspersoft.studio.field.label" value="address"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="phoneNumber" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="phoneNumber"/>
+		<property name="com.jaspersoft.studio.field.label" value="phoneNumber"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="orderId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="orderId"/>
+		<property name="com.jaspersoft.studio.field.label" value="orderId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="date"/>
+		<property name="com.jaspersoft.studio.field.label" value="date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="fullAmount" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="fullAmount"/>
+		<property name="com.jaspersoft.studio.field.label" value="fullAmount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="advance" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="advance"/>
+		<property name="com.jaspersoft.studio.field.label" value="advance"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="balance" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="balance"/>
+		<property name="com.jaspersoft.studio.field.label" value="balance"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="completeDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="completeDate"/>
+		<property name="com.jaspersoft.studio.field.label" value="completeDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="length" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="length"/>
+		<property name="com.jaspersoft.studio.field.label" value="length"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="shirtMeasurements"/>
+	</field>
+	<field name="chest" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="chest"/>
+		<property name="com.jaspersoft.studio.field.label" value="chest"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="shirtMeasurements"/>
+	</field>
+	<field name="shoulder" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="shoulder"/>
+		<property name="com.jaspersoft.studio.field.label" value="shoulder"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="shirtMeasurements"/>
+	</field>
+	<field name="sleeveLength" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="sleeveLength"/>
+		<property name="com.jaspersoft.studio.field.label" value="sleeveLength"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="shirtMeasurements"/>
+	</field>
+	<field name="collar" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="collar"/>
+		<property name="com.jaspersoft.studio.field.label" value="collar"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="shirtMeasurements"/>
+	</field>
+	<field name="cuff" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="cuff"/>
+		<property name="com.jaspersoft.studio.field.label" value="cuff"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="shirtMeasurements"/>
+	</field>
+	<field name="waist" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="waist"/>
+		<property name="com.jaspersoft.studio.field.label" value="waist"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="shirtMeasurements"/>
+	</field>
+	<group name="customerId">
+		<groupExpression><![CDATA[$F{customerId}]]></groupExpression>
+	</group>
+	<group name="firstName">
+		<groupExpression><![CDATA[$F{firstName}]]></groupExpression>
+	</group>
+	<group name="address">
+		<groupExpression><![CDATA[$F{address}]]></groupExpression>
+	</group>
+	<group name="phoneNumber">
+		<groupExpression><![CDATA[$F{phoneNumber}]]></groupExpression>
+	</group>
+	<group name="orderId">
+		<groupExpression><![CDATA[$F{orderId}]]></groupExpression>
+	</group>
+	<group name="date">
+		<groupExpression><![CDATA[$F{date}]]></groupExpression>
+	</group>
+	<group name="fullAmount">
+		<groupExpression><![CDATA[$F{fullAmount}]]></groupExpression>
+	</group>
+	<group name="advance">
+		<groupExpression><![CDATA[$F{advance}]]></groupExpression>
+	</group>
+	<group name="balance">
+		<groupExpression><![CDATA[$F{balance}]]></groupExpression>
+	</group>
+	<group name="completeDate">
+		<groupExpression><![CDATA[$F{completeDate}]]></groupExpression>
+	</group>
+	<group name="length">
+		<groupExpression><![CDATA[$F{length}]]></groupExpression>
+	</group>
+	<group name="chest">
+		<groupExpression><![CDATA[$F{chest}]]></groupExpression>
+	</group>
+	<group name="shoulder">
+		<groupExpression><![CDATA[$F{shoulder}]]></groupExpression>
+	</group>
+	<group name="sleeveLength">
+		<groupExpression><![CDATA[$F{sleeveLength}]]></groupExpression>
+	</group>
+	<group name="collar">
+		<groupExpression><![CDATA[$F{collar}]]></groupExpression>
+	</group>
+	<group name="cuff">
+		<groupExpression><![CDATA[$F{cuff}]]></groupExpression>
+	</group>
+	<group name="waist">
+		<groupExpression><![CDATA[$F{waist}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="99" splitType="Stretch">
+			<staticText>
+				<reportElement x="158" y="-10" width="265" height="48" uuid="550a4b46-b30e-4dca-90a1-a90482ccb60a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Rasa SemiBold" size="35" isBold="false" isItalic="false" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[INVOICE]]></text>
+			</staticText>
+			<image>
+				<reportElement x="20" y="0" width="90" height="80" uuid="5d036ba7-8b1f-43f5-a71c-c60c6a598525"/>
+				<imageExpression><![CDATA["/home/ramal/Documents/logos/asdasfc.png"]]></imageExpression>
+			</image>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="455" y="2" width="100" height="30" uuid="2547b9c3-6b79-4a49-9ca2-816109232dbc"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="240" y="50" width="100" height="20" uuid="adb94234-8608-4820-a790-2f354ecffee9"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[PETTA Tailors ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="53" width="210" height="30" uuid="493fd1ad-01e3-4a96-813b-2292eda569fe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[N0:325/5 , Kandy Road , Kiribathoga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="143" y="68" width="279" height="30" uuid="46971e26-c2c3-4760-b103-7a595f3f5b60"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[0777 45 12 89 , 011 2 93 78 56]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="18" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-20" y="11" width="595" height="1" uuid="7f572b1c-0dee-4ddb-9629-4560f22d515a"/>
+			</rectangle>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="248" splitType="Stretch">
+			<textField>
+				<reportElement x="69" y="0" width="70" height="30" uuid="7a29d46e-62d0-44bc-b654-f4178cdccbcb"/>
+				<textFieldExpression><![CDATA[$F{orderId}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="70" height="30" uuid="28afcda5-64eb-40d4-9186-61a79401e83a"/>
+				<text><![CDATA[OrderI NO :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="71" y="30" width="68" height="30" uuid="9b1846dd-f1f1-478b-a6fa-df8de47f7fed"/>
+				<textFieldExpression><![CDATA[$F{customerId}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="30" width="70" height="30" uuid="b1b79f57-5491-4d09-8296-5eff1e45fdd3"/>
+				<text><![CDATA[Customer Id :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="63" width="185" height="30" uuid="fa155b9d-fbb0-416e-8961-85650238a97a"/>
+				<textFieldExpression><![CDATA[$F{firstName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="95" width="185" height="30" uuid="3e5de0b4-f41f-4f16-8cba-7a837b910480"/>
+				<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="63" width="185" height="30" uuid="e239cd45-00e9-402d-9a9a-a7fde05c29a6"/>
+				<textFieldExpression><![CDATA[$F{phoneNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="98" width="100" height="30" uuid="327d4abf-84bc-43cd-845b-bc1a58ba5a34"/>
+				<textFieldExpression><![CDATA[$F{shoulder}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-97" y="98" width="100" height="30" uuid="fc78a596-d7ec-4a4c-8a62-38fd11516739"/>
+				<text><![CDATA[shoulder]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

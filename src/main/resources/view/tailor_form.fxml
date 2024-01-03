@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="paneTailor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="860.0" prefWidth="1320.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.rms.controller.TailorFormController">
+   <children>
+      <Label layoutX="108.0" layoutY="120.0" text="Tailor Id  : ">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtFirstName" layoutX="329.0" layoutY="115.0" prefHeight="25.0" prefWidth="172.0" />
+      <Label layoutX="329.0" layoutY="88.0" text="First Name">
+         <font> 
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtLastName" layoutX="560.0" layoutY="115.0" prefHeight="25.0" prefWidth="172.0" />
+      <Label layoutX="560.0" layoutY="88.0" text="Last Name">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtAddress" layoutX="331.0" layoutY="186.0" prefHeight="25.0" prefWidth="407.0" />
+      <Label layoutX="331.0" layoutY="159.0" text="Address">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtPhoneNumber" layoutX="1022.0" layoutY="116.0" prefHeight="25.0" prefWidth="172.0" />
+      <Label layoutX="1022.0" layoutY="89.0" text="Phone Number">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblTailor" layoutX="24.0" layoutY="404.0" prefHeight="309.0" prefWidth="1268.0" stylesheets="@../styles/table.css">
+        <columns>
+          <TableColumn fx:id="colID" prefWidth="111.0" text="ID" />
+          <TableColumn fx:id="colFirstName" prefWidth="136.0" text="First Name" />
+            <TableColumn fx:id="colLastName" prefWidth="202.0" text="Last Name" />
+            <TableColumn fx:id="colNic" prefWidth="162.0" text="NIC" />
+            <TableColumn fx:id="colAddress" prefWidth="332.0" text="Address" />
+            <TableColumn fx:id="colPhoneNumber" prefWidth="166.0" text="Phone Number" />
+            <TableColumn fx:id="colSallery" prefWidth="158.0" text="Sallery(Rs)" />
+        </columns>
+      </TableView>
+      <TextField fx:id="txtTailorId2" alignment="CENTER" layoutX="506.0" layoutY="335.0" onAction="#txtSearchOnAction" prefHeight="40.0" prefWidth="251.0" promptText="Search Tailor" style="-fx-background-radius: 20;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></TextField>
+      <ImageView fitHeight="32.0" fitWidth="27.0" layoutX="515.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/search.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtNic" layoutX="792.0" layoutY="115.0" prefHeight="25.0" prefWidth="172.0" />
+      <Label layoutX="792.0" layoutY="88.0" text="NIC">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtSallery" layoutX="799.0" layoutY="187.0" prefHeight="25.0" prefWidth="172.0" />
+      <Label layoutX="798.0" layoutY="160.0" text="Salary">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="343.0" layoutY="252.0" onAction="#btnSaveOnAction" prefHeight="37.0" prefWidth="120.0" ripplerFill="WHITE" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="Save">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/save.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="513.0" layoutY="252.0" onAction="#btnUpdateOnAction" prefHeight="37.0" prefWidth="120.0" ripplerFill="WHITE" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="Update">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/update.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="683.0" layoutY="252.0" onAction="#btnDeleteOnAction" prefHeight="37.0" prefWidth="120.0" ripplerFill="WHITE" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="Delete">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/delete.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="853.0" layoutY="252.0" onAction="#btnClearOnAction" prefHeight="37.0" prefWidth="120.0" ripplerFill="WHITE" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="Clear">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/claer2.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <Label fx:id="lblTailorId" layoutX="206.0" layoutY="117.0" prefHeight="16.0" prefWidth="84.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <JFXButton buttonType="RAISED" layoutX="1146.0" layoutY="725.0" onAction="#btnReportOnAction" prefHeight="37.0" prefWidth="120.0" ripplerFill="WHITE" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="Report">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane prefHeight="54.0" prefWidth="1320.0" style="-fx-background-color: #1B1B1B;">
+         <children>
+            <Label layoutX="72.0" layoutY="12.0" text="Tailors" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="37.0" fitWidth="64.0" layoutX="26.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/whitetailor.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

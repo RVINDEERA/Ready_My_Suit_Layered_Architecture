@@ -1,0 +1,23 @@
+.table-view .column-header .label{
+    -fx-background-color: rgb(229, 142, 38);
+    -fx-alignment: CENTER;
+
+
+}
+.table-row-cell:odd{
+    -fx-background-color: rgb(229, 142, 38);
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+
+}
+
+.table-row-cell{
+    -fx-alignment: CENTER;
+}
+
+.table-column{
+    -fx-alignment: CENTER;
+}
+.table-row-cell:selected{
+    -fx-background-color: rgb(63, 62, 62);
+}

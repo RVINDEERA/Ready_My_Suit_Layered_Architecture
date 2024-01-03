@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="paneCustomer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="860.0" prefWidth="1320.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.rms.controller.CustomerFormController">
+   <children>
+      <Label layoutX="98.0" layoutY="113.0" text="Customer Id : ">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtFirstName" layoutX="317.0" layoutY="110.0" prefHeight="25.0" prefWidth="172.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Label layoutX="317.0" layoutY="83.0" text="First Name">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtLastName" layoutX="548.0" layoutY="110.0" prefHeight="25.0" prefWidth="172.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Label layoutX="548.0" layoutY="83.0" text="Last Name">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtAddress" layoutX="1011.0" layoutY="109.0" prefHeight="25.0" prefWidth="221.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Label layoutX="1011.0" layoutY="82.0" text="Address">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtPhoneNumber" layoutX="780.0" layoutY="109.0" prefHeight="25.0" prefWidth="172.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Label layoutX="780.0" layoutY="82.0" text="Phone Number">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="345.0" layoutY="194.0" onAction="#btnSaveOnAction" prefHeight="37.0" prefWidth="120.0" ripplerFill="WHITE" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="Save">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/save.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="515.0" layoutY="194.0" onAction="#btnUpdateOnAction" prefHeight="37.0" prefWidth="120.0" ripplerFill="WHITE" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="Update">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/update.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="685.0" layoutY="194.0" onAction="#btnDeleteOnAction" prefHeight="37.0" prefWidth="120.0" ripplerFill="WHITE" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="Delete">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/delete.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="855.0" layoutY="194.0" onAction="#btnClearOnAction" prefHeight="37.0" prefWidth="120.0" ripplerFill="WHITE" style="-fx-background-color: rgba(229, 142, 38,1.0); -fx-background-radius: 7;" text="Clear">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/claer2.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <TableView fx:id="tblCustomer" layoutX="49.0" layoutY="346.0" prefHeight="411.0" prefWidth="1222.0" stylesheets="@../styles/table.css">
+        <columns>
+          <TableColumn fx:id="colID" prefWidth="131.0" text="ID" />
+          <TableColumn fx:id="colFirstName" prefWidth="166.0" text="First Name" />
+            <TableColumn fx:id="colLastName" prefWidth="250.0" text="Last Name" />
+            <TableColumn fx:id="colAddress" prefWidth="481.0" text="Address" />
+            <TableColumn fx:id="colPhone" prefWidth="196.0" text="Phone " />
+        </columns>
+      </TableView>
+      <TextField fx:id="txtCustomerId2" alignment="CENTER" layoutX="535.0" layoutY="279.0" onAction="#txtCustomerIdSearch" prefHeight="40.0" prefWidth="251.0" promptText="Search Customer" style="-fx-background-radius: 20;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></TextField>
+      <ImageView fitHeight="32.0" fitWidth="27.0" layoutX="552.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/search.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblCustomerId" layoutX="214.0" layoutY="111.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="-2.0" prefHeight="54.0" prefWidth="1320.0" style="-fx-background-color: #1B1B1B;">
+         <children>
+            <Label layoutX="72.0" layoutY="12.0" text="Customers " textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="40.0" fitWidth="36.0" layoutX="26.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/customer.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
