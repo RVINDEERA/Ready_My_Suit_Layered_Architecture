@@ -1,5 +1,6 @@
-package lk.ijse.rms.dao;
+package lk.ijse.rms.dao.custom.impl;
 
+import lk.ijse.rms.dao.custom.ShirtMeasurementDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.ShirtDto;
 
@@ -8,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ShirtMeasurementModel {
+public class ShirtMeasurementDAOImpl implements ShirtMeasurementDAO {
     public boolean shirtMeasurementSave(ShirtDto shirtDto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
         String sql = "INSERT INTO shirtMeasurements VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -41,7 +42,7 @@ public class ShirtMeasurementModel {
         return splitShirtID(null);
     }
 
-    private String splitShirtID(String currentShirtID) {
+    public String splitShirtID(String currentShirtID) {
         if (currentShirtID != null){
             String [] split = currentShirtID.split("(SM)");
 

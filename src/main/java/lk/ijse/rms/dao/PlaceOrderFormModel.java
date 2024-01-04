@@ -1,5 +1,7 @@
 package lk.ijse.rms.dao;
 
+import lk.ijse.rms.dao.custom.impl.ItemDAOImpl;
+import lk.ijse.rms.dao.custom.impl.OrderItemDAOImpl;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.PlaceOrderDto;
 
@@ -8,9 +10,9 @@ import java.sql.SQLException;
 
 public class PlaceOrderFormModel {
 
-    private  OrderModel orderModel = new OrderModel();
-    private ItemModel itemModel = new ItemModel();
-    private OrderItemModel orderItemModel= new OrderItemModel();
+    private OrderDAOImpl orderDAOImpl = new OrderDAOImpl();
+    private ItemDAOImpl itemDAOImpl = new ItemDAOImpl();
+    private OrderItemDAOImpl orderItemDAOImpl = new OrderItemDAOImpl();
 
     public boolean placeOrder(PlaceOrderDto placeOrderDto) throws SQLException {
 
@@ -29,11 +31,11 @@ public class PlaceOrderFormModel {
             connection = DbConnection.getInstance().getConnection();
             connection.setAutoCommit(false);
 
-            boolean isOrderSaved = orderModel.saveOrder(orderId,date,customerId,tailorId,fullAmount,advance,balance,status,completeDate);
+            boolean isOrderSaved = orderDAOImpl.saveOrder(orderId,date,customerId,tailorId,fullAmount,advance,balance,status,completeDate);
             if (isOrderSaved){
-                boolean isUpdated = itemModel.updateItem(placeOrderDto.getOrderCartTmList());
+                boolean isUpdated = itemDAOImpl.updateItem(placeOrderDto.getOrderCartTmList());
                 if (isUpdated){
-                    boolean isOrderItemSaved = orderItemModel.saveOrderItem(placeOrderDto.getOrderId(),placeOrderDto.getOrderCartTmList());
+                    boolean isOrderItemSaved = orderItemDAOImpl.saveOrderItem(placeOrderDto.getOrderId(),placeOrderDto.getOrderCartTmList());
                     if (isOrderItemSaved){
                         connection.commit();
                         return  true;

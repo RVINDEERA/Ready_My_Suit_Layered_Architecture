@@ -1,5 +1,6 @@
-package lk.ijse.rms.dao;
+package lk.ijse.rms.dao.custom.impl;
 
+import lk.ijse.rms.dao.custom.RentalCoatDetailDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.tm.CartTm;
 
@@ -8,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public class RentalCoatDetailModel {
+public class RentalCoatDetailDAOImpl implements RentalCoatDetailDAO {
     public boolean saveRentCoatDetails(String rentId, List<CartTm> cartTmList) throws SQLException {
         for(CartTm tm : cartTmList) {
             if(!saveRentCoatDetails(rentId, tm)) {
@@ -18,7 +19,7 @@ public class RentalCoatDetailModel {
         return true;
     }
 
-    private boolean saveRentCoatDetails(String rentId, CartTm tm) throws SQLException {
+     public boolean saveRentCoatDetails(String rentId, CartTm tm) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "INSERT INTO rentalCoatDetail VALUES(?, ?, ?, ?, ?)";

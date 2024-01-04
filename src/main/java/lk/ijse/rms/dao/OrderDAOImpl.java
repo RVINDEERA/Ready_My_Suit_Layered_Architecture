@@ -1,5 +1,6 @@
 package lk.ijse.rms.dao;
 
+import lk.ijse.rms.dao.custom.OrderDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.OrderDto;
 
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderModel {
+public class OrderDAOImpl implements OrderDAO {
 
     public static String genarateNextOrderId() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
@@ -26,7 +27,7 @@ public class OrderModel {
 
     }
 
-    private static String splitOrderId(String string) {
+    public static String splitOrderId(String string) {
         if (string != null){
             String [] split = string.split("(O)");
 

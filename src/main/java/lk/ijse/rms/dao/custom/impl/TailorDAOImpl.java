@@ -1,5 +1,6 @@
-package lk.ijse.rms.dao;
+package lk.ijse.rms.dao.custom.impl;
 
+import lk.ijse.rms.dao.custom.TailorDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.TailorDto;
 
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TailorModel {
+public class TailorDAOImpl implements TailorDAO {
     public boolean saveTailor(TailorDto tailorDto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm =connection.prepareStatement("INSERT INTO tailor VALUES (?,?,?,?,?,?,?)");
@@ -37,7 +38,7 @@ public class TailorModel {
         return  splitCustomerID(null);
     }
 
-    private String splitCustomerID(String currentTailorID) {
+    public String splitCustomerID(String currentTailorID) {
         if (currentTailorID!=null){
             String[] split = currentTailorID.split("00");
             int id = Integer.parseInt(split[1]);

@@ -1,5 +1,6 @@
-package lk.ijse.rms.dao;
+package lk.ijse.rms.dao.custom.impl;
 
+import lk.ijse.rms.dao.custom.ItemDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.ItemDto;
 import lk.ijse.rms.dto.tm.OrderCartTm;
@@ -11,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemModel {
+public class ItemDAOImpl implements ItemDAO {
     public boolean saveItem(ItemDto itemDto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement("INSERT INTO item VALUES (?,?)");
@@ -93,7 +94,7 @@ public class ItemModel {
         return true;
     }
 
-    private boolean updateItemCount(String itemId, int count) throws SQLException {
+    public boolean updateItemCount(String itemId, int count) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         PreparedStatement pstm = connection.prepareStatement("UPDATE item SET count = count + ? where itemId = ? ");

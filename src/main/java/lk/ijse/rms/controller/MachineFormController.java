@@ -11,8 +11,8 @@ import javafx.scene.layout.AnchorPane;
 import lk.ijse.rms.dto.MachineDto;
 import lk.ijse.rms.dto.TailorDto;
 import lk.ijse.rms.dto.tm.MachineTm;
-import lk.ijse.rms.dao.MachineModel;
-import lk.ijse.rms.dao.TailorModel;
+import lk.ijse.rms.dao.custom.impl.MachineDAOImpl;
+import lk.ijse.rms.dao.custom.impl.TailorDAOImpl;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -67,9 +67,9 @@ public class MachineFormController {
     @FXML
     private JFXComboBox<String> cmbTailorId;
 
-    private MachineModel machineModel =new MachineModel();
+    private MachineDAOImpl machineDAOImpl =new MachineDAOImpl();
     private boolean btnClearPressed=false;
-    private TailorModel tailorModel =new TailorModel();
+    private TailorDAOImpl tailorDAOImpl =new TailorDAOImpl();
 
     public void initialize(){
         setCellValueFactory();
@@ -82,7 +82,7 @@ public class MachineFormController {
         ObservableList<String> obList =FXCollections.observableArrayList();
 
         try {
-            List<TailorDto> idList = tailorModel.getAllMachine();
+            List<TailorDto> idList = tailorDAOImpl.getAllMachine();
             for (TailorDto dto : idList){
                 obList.add(dto.getTailorId());
             }
@@ -96,7 +96,7 @@ public class MachineFormController {
         MachineDto machineDto = new MachineDto();
         ObservableList<MachineTm> obList = FXCollections.observableArrayList();
         try {
-            List<MachineDto> dtoList=machineModel.getAllCustomer();
+            List<MachineDto> dtoList= machineDAOImpl.getAllCustomer();
 
             for (MachineDto dto : dtoList){
                 obList.add(
@@ -127,7 +127,7 @@ public class MachineFormController {
     private void genarateNextMachineId() {
         try {
             String previousCustomerID = lblMachineId.getText();
-            String machineIdID = machineModel.genarateNextMachineId();
+            String machineIdID = machineDAOImpl.genarateNextMachineId();
             lblMachineId.setText(machineIdID);
             clearFields();
             if (btnClearPressed){
@@ -160,7 +160,7 @@ public class MachineFormController {
             ButtonType pressedButton = buttonType.get();
             if (pressedButton.equals(ButtonType.YES)) {
                 try {
-                    boolean isDeleted = machineModel.machineDelete(id);
+                    boolean isDeleted = machineDAOImpl.machineDelete(id);
                     if (isDeleted) {
                         new Alert(Alert.AlertType.INFORMATION, "Machine " + id + " Deleted").show();
                         loaddAllMachine();
@@ -188,7 +188,7 @@ public class MachineFormController {
         boolean isVlidate = validateMachine(machineDto);
         if (isVlidate) {
             try {
-                boolean isSaved = machineModel.machineSave(machineDto);
+                boolean isSaved = machineDAOImpl.machineSave(machineDto);
                 if (isSaved) {
                     clearFields();
                     genarateNextMachineId();
@@ -230,7 +230,7 @@ public class MachineFormController {
         boolean isVlidate = validateMachine(machineDto);
         if (isVlidate) {
             try {
-                boolean isUpdated = machineModel.updateCustomer(machineDto);
+                boolean isUpdated = machineDAOImpl.updateCustomer(machineDto);
                 if (isUpdated) {
                     new Alert(Alert.AlertType.INFORMATION, "Machine Updated Successfully").show();
                     genarateNextMachineId();
@@ -247,7 +247,7 @@ public class MachineFormController {
     void txtCustomerIdSearch(ActionEvent event) {
         String id =txtSearch.getText();
         try {
-            MachineDto machineDto =machineModel.searchMachine(id);
+            MachineDto machineDto = machineDAOImpl.searchMachine(id);
             if (machineDto != null){
                 lblMachineId.setText(machineDto.getMachineId());
                 cmbTailorId.setValue(machineDto.getTailorId());

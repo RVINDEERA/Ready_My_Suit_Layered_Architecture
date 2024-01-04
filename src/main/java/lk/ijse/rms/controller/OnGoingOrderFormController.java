@@ -14,7 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.rms.dto.OrderDto;
 import lk.ijse.rms.dto.tm.OrderTm;
-import lk.ijse.rms.dao.OrderModel;
+import lk.ijse.rms.dao.OrderDAOImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -63,7 +63,7 @@ public class OnGoingOrderFormController {
 
     @FXML
     private TextField txtStatus;
-    private OrderModel orderModel = new OrderModel();
+    private OrderDAOImpl orderDAOImpl = new OrderDAOImpl();
 
     public void initialize(){
         setCellValueFactory();
@@ -98,7 +98,7 @@ public class OnGoingOrderFormController {
         ObservableList<OrderTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<OrderDto> dtoList = orderModel.getAllCustomer();
+            List<OrderDto> dtoList = orderDAOImpl.getAllCustomer();
 
             for (OrderDto dto : dtoList) {
                 obList.add(
@@ -130,7 +130,7 @@ public class OnGoingOrderFormController {
         String status = txtStatus.getText();
 
         try {
-            boolean isUpdated = orderModel.updateOrderStatus(id,status);
+            boolean isUpdated = orderDAOImpl.updateOrderStatus(id,status);
             if(isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, id+" Order Completed").show();
                 Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/onGoingOrder_form.fxml"));
@@ -147,7 +147,7 @@ public class OnGoingOrderFormController {
         String id =txtCustomerId2.getText();
 
         try {
-            OrderDto orderDto = orderModel.searchOrder(id);
+            OrderDto orderDto = orderDAOImpl.searchOrder(id);
             if (orderDto != null) {
                 txtOrderId.setText(orderDto.getOrderId());
                 txtStatus.setText(orderDto.getStatus());

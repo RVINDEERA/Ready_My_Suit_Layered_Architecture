@@ -1,4 +1,4 @@
-package lk.ijse.rms.dao;
+package lk.ijse.rms.dao.custom.impl;
 
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.CoatDto;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CoatModel {
+public class CoatDAOImpl {
     public static boolean coatDelete(String id) throws SQLException {
         Connection connection=DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement("DELETE FROM coat WHERE coatId = ?");
@@ -48,7 +48,7 @@ public class CoatModel {
         return splitCustomerID(null);
     }
 
-    private String splitCustomerID(String currentCoatID) {
+    public String splitCustomerID(String currentCoatID) {
         if (currentCoatID != null){
             String [] split = currentCoatID.split("(COT)");
 

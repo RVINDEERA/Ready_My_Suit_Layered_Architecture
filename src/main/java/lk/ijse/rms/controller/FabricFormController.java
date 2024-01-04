@@ -10,8 +10,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.rms.dto.*;
 import lk.ijse.rms.dto.tm.FabricTm;
-import lk.ijse.rms.dao.FabricModel;
-import lk.ijse.rms.dao.ItemModel;
+import lk.ijse.rms.dao.custom.impl.FabricDAOImpl;
+import lk.ijse.rms.dao.custom.impl.ItemDAOImpl;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -59,9 +59,9 @@ public class FabricFormController {
     @FXML
     private TextField txtSearch;
 
-    private FabricModel fabricModel = new FabricModel();
+    FabricDAOImpl fabricDAOImpl = new FabricDAOImpl();
 
-    private ItemModel itemModel = new ItemModel();
+    ItemDAOImpl itemDAOImpl = new ItemDAOImpl();
 
     public void initialize(){
 
@@ -84,7 +84,7 @@ public class FabricFormController {
 
         ObservableList<FabricTm> obList = FXCollections.observableArrayList();
         try {
-            List<FabricDto> dtoList=fabricModel.getAllCustomer();
+            List<FabricDto> dtoList= fabricDAOImpl.getAllCustomer();
 
             for (FabricDto dto : dtoList){
                 obList.add(
@@ -106,7 +106,7 @@ public class FabricFormController {
     private void genarateNextFabricId() {
         try {
             String previousFabricID = lblFabricId.getText();
-            String fabricId = fabricModel.genarateNextFabricId();
+            String fabricId = fabricDAOImpl.genarateNextFabricId();
             lblFabricId.setText(fabricId);
             clearFields();
             if (btnClearPressed){
@@ -141,7 +141,7 @@ public class FabricFormController {
             ButtonType pressedButton = buttonType.get();
             if (pressedButton.equals(ButtonType.YES)) {
                 try {
-                    boolean isDeleted = fabricModel.fabricDelete(id);
+                    boolean isDeleted = fabricDAOImpl.fabricDelete(id);
                     if (isDeleted) {
                         new Alert(Alert.AlertType.INFORMATION, "Fabric " + id + " Deleted").show();
                         genarateNextFabricId();
@@ -160,7 +160,7 @@ public class FabricFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<ItemDto> idList = itemModel.getAllTypes();
+            List<ItemDto> idList = itemDAOImpl.getAllTypes();
             for (ItemDto dto : idList){
                 obList.add(dto.getType());
             }
@@ -186,7 +186,7 @@ public class FabricFormController {
         boolean isValid = validateFabric(fabricDto);
         if (isValid) {
             try {
-                boolean isSaved = fabricModel.fabricSave(fabricDto);
+                boolean isSaved = fabricDAOImpl.fabricSave(fabricDto);
                 if (isSaved) {
                     loadAllFabrics();
                     clearFields();
@@ -232,7 +232,7 @@ public class FabricFormController {
         boolean isVlidate = validateFabric(fabricDto);
         if (isVlidate) {
             try {
-                boolean isUpdated = fabricModel.updateFabric(fabricDto);
+                boolean isUpdated = fabricDAOImpl.updateFabric(fabricDto);
                 if (isUpdated) {
                     new Alert(Alert.AlertType.INFORMATION, "Fabric Updated Successfully").show();
                         genarateNextFabricId();
@@ -249,7 +249,7 @@ public class FabricFormController {
     void txtFabricSearch(ActionEvent event) {
         String id =txtSearch.getText();
         try {
-            FabricDto fabricDto =fabricModel.searchFabric(id);
+            FabricDto fabricDto = fabricDAOImpl.searchFabric(id);
             if (fabricDto != null){
                 lblFabricId.setText(fabricDto.getFabricId());
                 txtName.setText(fabricDto.getName());

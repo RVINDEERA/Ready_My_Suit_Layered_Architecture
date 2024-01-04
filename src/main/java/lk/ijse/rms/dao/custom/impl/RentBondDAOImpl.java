@@ -1,5 +1,6 @@
-package lk.ijse.rms.dao;
+package lk.ijse.rms.dao.custom.impl;
 
+import lk.ijse.rms.dao.custom.RentBondDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.RentalBondDto;
 
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RentBondModel {
+public class RentBondDAOImpl implements RentBondDAO {
 
     public List<RentalBondDto> loadAllBond() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();

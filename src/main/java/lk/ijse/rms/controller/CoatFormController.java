@@ -9,7 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.rms.dto.CoatDto;
 import lk.ijse.rms.dto.tm.CoatTm;
-import lk.ijse.rms.dao.CoatModel;
+import lk.ijse.rms.dao.custom.impl.CoatDAOImpl;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -70,7 +70,7 @@ public class CoatFormController {
     @FXML
     private Label lblmfgDatetoset;
 
-    private CoatModel coatModel = new CoatModel();
+    CoatDAOImpl coatDAOImpl = new CoatDAOImpl();
 
     public void initialize(){
         genarateNextCoatId();
@@ -98,7 +98,7 @@ public class CoatFormController {
         CoatDto coatDto = new CoatDto();
         ObservableList<CoatTm> obList = FXCollections.observableArrayList();
         try {
-            List<CoatDto> dtoList=coatModel.getAllCoat();
+            List<CoatDto> dtoList= coatDAOImpl.getAllCoat();
 
             for (CoatDto dto : dtoList){
                 obList.add(
@@ -133,7 +133,7 @@ public class CoatFormController {
     private void genarateNextCoatId() {
         try {
             String previousCoatID = lblCoatId.getText();
-            String coatId = coatModel.genarateNextMachineId();
+            String coatId = coatDAOImpl.genarateNextMachineId();
             lblCoatId.setText(coatId);
             clearField();
             if (btnClearPressed){
@@ -167,7 +167,7 @@ public class CoatFormController {
             ButtonType pressedButton = buttonType.get();
             if (pressedButton.equals(ButtonType.YES)) {
                 try {
-                    boolean isDeleted = CoatModel.coatDelete(id);
+                    boolean isDeleted = CoatDAOImpl.coatDelete(id);
                     if (isDeleted) {
                         new Alert(Alert.AlertType.INFORMATION, "Coat " + id + " Deleted").show();
                         clearField();
@@ -198,7 +198,7 @@ public class CoatFormController {
         boolean isValid = validateCoat(coatDto);
         if (isValid){
             try {
-                boolean isSaved = coatModel.saveCoat(coatDto);
+                boolean isSaved = coatDAOImpl.saveCoat(coatDto);
                 if (isSaved){
                     clearField();
                     loadAllCoat();
@@ -256,7 +256,7 @@ public class CoatFormController {
 
         CoatDto coatDto = new CoatDto(coatId,type,color,avail,date,price,size);
         try {
-            boolean isUpdated = coatModel.updateCoat(coatDto);
+            boolean isUpdated = coatDAOImpl.updateCoat(coatDto);
             if (isUpdated) {
                 new Alert(Alert.AlertType.INFORMATION, "Coat Updated Successfully").show();
                 genarateNextCoatId();
@@ -274,7 +274,7 @@ public class CoatFormController {
     void txtCoatIdSearch(ActionEvent event) {
         String id =txtSearch.getText();
         try {
-            CoatDto coatDto =coatModel.searchCoat(id);
+            CoatDto coatDto = coatDAOImpl.searchCoat(id);
             if (coatDto != null){
                 lblCoatId.setText(coatDto.getCoatId());
                 txtType.setText(coatDto.getType());

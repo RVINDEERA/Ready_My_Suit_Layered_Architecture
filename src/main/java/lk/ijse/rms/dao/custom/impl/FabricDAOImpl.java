@@ -1,5 +1,6 @@
-package lk.ijse.rms.dao;
+package lk.ijse.rms.dao.custom.impl;
 
+import lk.ijse.rms.dao.custom.FabricDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.FabricDto;
 
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FabricModel {
+public class FabricDAOImpl implements FabricDAO {
     public String genarateNextFabricId() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -24,7 +25,7 @@ public class FabricModel {
         return splitFabricID(null);
     }
 
-    private String splitFabricID(String currentFabricId) {
+    public String splitFabricID(String currentFabricId) {
         if (currentFabricId != null){
             String [] split = currentFabricId.split("(F)");
 

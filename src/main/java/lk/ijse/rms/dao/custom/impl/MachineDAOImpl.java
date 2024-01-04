@@ -1,4 +1,4 @@
-package lk.ijse.rms.dao;
+package lk.ijse.rms.dao.custom.impl;
 
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.MachineDto;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MachineModel {
+public class MachineDAOImpl {
 
     public boolean machineSave(MachineDto machineDto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
@@ -37,7 +37,7 @@ public class MachineModel {
         return splitMachineID(null);
     }
 
-    private String splitMachineID(String currentMachineId) {
+    public String splitMachineID(String currentMachineId) {
         if (currentMachineId != null){
             String [] split = currentMachineId.split("(JKM)");
 

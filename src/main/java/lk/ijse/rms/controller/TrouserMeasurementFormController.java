@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import lk.ijse.rms.dto.CustomerDto;
 import lk.ijse.rms.dto.TrouserDto;
 import lk.ijse.rms.dao.custom.impl.CustomerDAOImpl;
-import lk.ijse.rms.dao.TrouserModel;
+import lk.ijse.rms.dao.custom.impl.TrouserDAOImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -76,7 +76,7 @@ public class TrouserMeasurementFormController {
     @FXML
     private TextField txtlength;
 
-    private TrouserModel trouserModel = new TrouserModel();
+    private TrouserDAOImpl trouserDAOImpl = new TrouserDAOImpl();
 
     private CustomerDAOImpl customerModel = new CustomerDAOImpl();
 
@@ -93,7 +93,7 @@ public class TrouserMeasurementFormController {
 
         try {
             String previousTrouserID = lblMeasurementId.getText();
-            String trouserId = trouserModel.generateNextId();
+            String trouserId = trouserDAOImpl.generateNextId();
             lblMeasurementId.setText(trouserId);
             clearFields();
             if (btnClearPressed){
@@ -150,7 +150,7 @@ public class TrouserMeasurementFormController {
         TrouserDto trouserDto = new TrouserDto(measurementId,customerId,date,length,waist,seat,halfSeat,knee,bottom,crotch);
 
         try {
-            boolean isSaved = trouserModel.saveTroserMeasurements(trouserDto);
+            boolean isSaved = trouserDAOImpl.saveTroserMeasurements(trouserDto);
             if (isSaved){
                 clearFields();
                 new Alert(Alert.AlertType.INFORMATION,"New Trouser Measurements Saved Successful").show();
@@ -176,7 +176,7 @@ public class TrouserMeasurementFormController {
 
         TrouserDto trouserDto = new TrouserDto(measurementId,customerId,date,length,waist,seat,halfSeat,knee,bottom,crotch);
         try {
-            boolean isUpdated = trouserModel.updateTrouser(trouserDto);
+            boolean isUpdated = trouserDAOImpl.updateTrouser(trouserDto);
             if (isUpdated) {
                 new Alert(Alert.AlertType.INFORMATION, "Measurements Updated Successfully").show();
                 generateNextTrouserId();
@@ -195,7 +195,7 @@ public class TrouserMeasurementFormController {
                 lblCustomerID.setText(customerDto.getCustomerId());
                 String trouserM = lblCustomerID.getText();
                     try {
-                        TrouserDto trouserDto = trouserModel.searchMeasurements(trouserM);
+                        TrouserDto trouserDto = trouserDAOImpl.searchMeasurements(trouserM);
                         if (trouserDto !=null){
                             lblMeasurementId.setText(trouserDto.getTrmId());
                             lblDate.setText(trouserDto.getDate());

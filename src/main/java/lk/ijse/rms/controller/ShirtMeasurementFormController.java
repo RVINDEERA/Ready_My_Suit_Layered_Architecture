@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import lk.ijse.rms.dto.CustomerDto;
 import lk.ijse.rms.dto.ShirtDto;
 import lk.ijse.rms.dao.custom.impl.CustomerDAOImpl;
-import lk.ijse.rms.dao.ShirtMeasurementModel;
+import lk.ijse.rms.dao.custom.impl.ShirtMeasurementDAOImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -82,7 +82,7 @@ public class ShirtMeasurementFormController {
     private TextField txtcustomerid;
     private CustomerDAOImpl customerModel = new CustomerDAOImpl();
     private AnchorPane paneSelectItem;
-    private ShirtMeasurementModel shirtMeasurementModel = new ShirtMeasurementModel();
+    private ShirtMeasurementDAOImpl shirtMeasurementDAOImpl = new ShirtMeasurementDAOImpl();
 
     public  void initialize(){
         generateNextShirtId();
@@ -100,7 +100,7 @@ public class ShirtMeasurementFormController {
     private void generateNextShirtId() {
         try {
             String previousShirtID = lblMeasurementId.getText();
-            String shirtmId = shirtMeasurementModel.generateNextShirtId();
+            String shirtmId = shirtMeasurementDAOImpl.generateNextShirtId();
             lblMeasurementId.setText(shirtmId);
             clearFields();
             if (btnClearPressed){
@@ -147,7 +147,7 @@ public class ShirtMeasurementFormController {
       //  boolean isVlidate = validateMeasurement(shirtDto);
      //   if (isVlidate) {
             try {
-                boolean isSaved = shirtMeasurementModel.shirtMeasurementSave(shirtDto);
+                boolean isSaved = shirtMeasurementDAOImpl.shirtMeasurementSave(shirtDto);
                 if (isSaved){
                     generateNextShirtId();
                     clearFields();
@@ -215,7 +215,7 @@ public class ShirtMeasurementFormController {
 
         ShirtDto shirtDto = new ShirtDto(measurementId,customerId,date,length,chest,shoulder,sleeveLength,collar, cuff, waist);
         try {
-            boolean isUpdated = shirtMeasurementModel.updateShirt(shirtDto);
+            boolean isUpdated = shirtMeasurementDAOImpl.updateShirt(shirtDto);
             if (isUpdated) {
                 new Alert(Alert.AlertType.INFORMATION, "Measurements Updated Successfully").show();
                 generateNextShirtId();
@@ -236,7 +236,7 @@ public class ShirtMeasurementFormController {
 
                 String shirtM = lblCustomerId.getText();
                 try {
-                    ShirtDto shirtDto = shirtMeasurementModel.searchMeasurements(shirtM);
+                    ShirtDto shirtDto = shirtMeasurementDAOImpl.searchMeasurements(shirtM);
                     if (shirtDto !=null){
                         lblMeasurementId.setText(shirtDto.getSmId());
                         lblDate.setText(shirtDto.getDate());

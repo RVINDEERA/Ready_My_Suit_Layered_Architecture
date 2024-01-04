@@ -10,7 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.rms.dao.LoginModel;
+import lk.ijse.rms.dao.custom.impl.LoginDAOImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -26,7 +26,7 @@ public class LoginFormController {
     @FXML
     private TextField txtUserName;
 
-    private LoginModel loginModel = new LoginModel();
+    private LoginDAOImpl loginDAOImpl = new LoginDAOImpl();
 
     @FXML
     void btnLoginOnAction(ActionEvent event) throws IOException {
@@ -37,7 +37,7 @@ public class LoginFormController {
         }
 
         try {
-            boolean isValid = loginModel.userLogin(userName,password);
+            boolean isValid = loginDAOImpl.userLogin(userName,password);
             if (isValid){
                 navigateToMain();
             }else {

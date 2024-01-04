@@ -13,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.rms.dto.CoatMeasurementsDto;
 import lk.ijse.rms.dto.CustomerDto;
-import lk.ijse.rms.dao.CoatMeasurementDAOImpl;
+import lk.ijse.rms.dao.custom.impl.CoatMeasurementDAOImpl;
 import lk.ijse.rms.dao.custom.impl.CustomerDAOImpl;
 
 import java.io.IOException;

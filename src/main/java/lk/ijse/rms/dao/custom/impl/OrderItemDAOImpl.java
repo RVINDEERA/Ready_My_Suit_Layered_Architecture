@@ -1,4 +1,4 @@
-package lk.ijse.rms.dao;
+package lk.ijse.rms.dao.custom.impl;
 
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.tm.OrderCartTm;
@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public class OrderItemModel {
+public class OrderItemDAOImpl {
     public boolean saveOrderItem(String orderId, List<OrderCartTm> orderCartTmList) throws SQLException {
         for(OrderCartTm tm : orderCartTmList) {
             if(!saveOrderItem(orderId, tm)) {
@@ -19,7 +19,7 @@ public class OrderItemModel {
 
     }
 
-    private boolean saveOrderItem(String orderId, OrderCartTm tm) throws SQLException {
+    public boolean saveOrderItem(String orderId, OrderCartTm tm) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "INSERT INTO orderItem VALUES(?, ?, ?, ?)";

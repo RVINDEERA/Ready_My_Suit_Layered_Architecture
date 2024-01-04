@@ -1,5 +1,6 @@
-package lk.ijse.rms.dao;
+package lk.ijse.rms.dao.custom.impl;
 
+import lk.ijse.rms.dao.custom.TrouserDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.TrouserDto;
 
@@ -8,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TrouserModel {
+public class TrouserDAOImpl implements TrouserDAO {
     public String generateNextId() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -22,7 +23,7 @@ public class TrouserModel {
         return splitrouserId(null);
     }
 
-    private String splitrouserId(String currentTrouser) {
+    public String splitrouserId(String currentTrouser) {
         if (currentTrouser != null){
             String [] split = currentTrouser.split("(TM)");
 

@@ -14,7 +14,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.rms.dao.custom.impl.CoatDAOImpl;
 import lk.ijse.rms.dao.custom.impl.CustomerDAOImpl;
+import lk.ijse.rms.dao.custom.impl.RentBondDAOImpl;
+import lk.ijse.rms.dao.custom.impl.RentDAOImpl;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.*;
 import lk.ijse.rms.dto.tm.CartTm;
@@ -119,15 +122,15 @@ public class RentCoatFormController {
     private DatePicker txtReturnDate;
 
     private CustomerDAOImpl customerModel = new CustomerDAOImpl();
-    private CoatModel coatModel = new CoatModel();
+    private CoatDAOImpl coatDAOImpl = new CoatDAOImpl();
 
-    private RentModel rentModel=new RentModel();
+    private RentDAOImpl rentDAOImpl =new RentDAOImpl();
     @FXML
     private JFXComboBox<String> cmbRentalBond;
 
-    private RentBondModel rentBondModel = new RentBondModel();
+    private RentBondDAOImpl rentBondDAOImpl = new RentBondDAOImpl();
 
-    private RentCoatModel rentCoatModel=new RentCoatModel();
+    private RentCoatDAOImpl rentCoatDAOImpl =new RentCoatDAOImpl();
 
     @FXML
     private Label lblColor;
@@ -166,7 +169,7 @@ public class RentCoatFormController {
     private void generateNextRentOrderId() {
         try {
             String previousRentCoatId = lblRentNo.getText();
-            String rentCoatId = rentModel.genarateNextRentCoatId();
+            String rentCoatId = rentDAOImpl.genarateNextRentCoatId();
             lblRentNo.setText(rentCoatId);
             clearFields();
             if (btnClearPressed){
@@ -204,7 +207,7 @@ public class RentCoatFormController {
     private void loadRentalBond() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<RentalBondDto> rentalBondDto = rentBondModel.loadAllBond();
+            List<RentalBondDto> rentalBondDto = rentBondDAOImpl.loadAllBond();
 
             for (RentalBondDto dto : rentalBondDto) {
                 obList.add(dto.getType());
@@ -231,7 +234,7 @@ public class RentCoatFormController {
     private void loadCoatId() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<CoatDto> coatDtos = coatModel.loadAllItems();
+            List<CoatDto> coatDtos = coatDAOImpl.loadAllItems();
 
             for (CoatDto dto : coatDtos) {
                 obList.add(dto.getCoatId());
@@ -324,7 +327,7 @@ public class RentCoatFormController {
 
             RentCoatDto rentCoatDto = new RentCoatDto(rentId,customerId,rentalBond,cartTmList);
             try {
-                boolean isSuccesss=rentCoatModel.placeRentOrder(rentCoatDto);
+                boolean isSuccesss= rentCoatDAOImpl.placeRentOrder(rentCoatDto);
                 if (isSuccesss){
                     new Alert(Alert.AlertType.INFORMATION,"Rent Success").show();
                     Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/rentCoat_form.fxml"));
@@ -342,7 +345,7 @@ public class RentCoatFormController {
     void cmbCoatOnAction(ActionEvent event) {
         String id = cmbCoatId.getValue();
         try {
-            CoatDto coatDto = coatModel.searchCoat(id);
+            CoatDto coatDto = coatDAOImpl.searchCoat(id);
             lblUnitPrice.setText(coatDto.getPrice());
             lblType.setText(coatDto.getType());
             lblSize.setText(coatDto.getSize());

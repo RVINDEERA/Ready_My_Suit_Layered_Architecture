@@ -1,5 +1,6 @@
-package lk.ijse.rms.dao;
+package lk.ijse.rms.dao.custom.impl;
 
+import lk.ijse.rms.dao.custom.RegisterDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.UserDto;
 
@@ -8,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class RegisterModel {
+public class RegisterDAOImpl implements RegisterDAO {
     public boolean checkDuplicate(String email,String password) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement("SELECT * FROM user WHERE email = ? AND password =?");

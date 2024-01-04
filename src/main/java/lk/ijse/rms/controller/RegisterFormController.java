@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.rms.dto.UserDto;
-import lk.ijse.rms.dao.RegisterModel;
+import lk.ijse.rms.dao.custom.impl.RegisterDAOImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -34,7 +34,7 @@ public class RegisterFormController {
     @FXML
     private TextField txtUserName;
 
-    private RegisterModel registerModel = new RegisterModel();
+    private RegisterDAOImpl registerDAOImpl = new RegisterDAOImpl();
 
     @FXML
     void btnRegisterOnAction(ActionEvent event) throws IOException {
@@ -55,12 +55,12 @@ public class RegisterFormController {
         if (isValidate) {
 
             try {
-                boolean isDuplicated = registerModel.checkDuplicate(email, password);
+                boolean isDuplicated = registerDAOImpl.checkDuplicate(email, password);
                 if (isDuplicated) {
                     new Alert(Alert.AlertType.ERROR, "Email or Password already taken try another ").show();
                     return;
                 }
-                boolean isRegisterd = registerModel.userRegister(userDto);
+                boolean isRegisterd = registerDAOImpl.userRegister(userDto);
 
                 if (isRegisterd) {
                     new Alert(Alert.AlertType.INFORMATION, "New Account Created ").showAndWait();navigateToMain();

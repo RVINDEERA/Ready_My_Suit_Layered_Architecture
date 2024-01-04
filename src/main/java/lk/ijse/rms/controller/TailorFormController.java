@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.TailorDto;
 import lk.ijse.rms.dto.tm.TailorTm;
-import lk.ijse.rms.dao.TailorModel;
+import lk.ijse.rms.dao.custom.impl.TailorDAOImpl;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
@@ -78,7 +78,7 @@ public class TailorFormController {
     private TextField txtTailorId2;
 
 
-    private TailorModel tailorModel = new TailorModel();
+    private TailorDAOImpl tailorDAOImpl = new TailorDAOImpl();
 
     public  void initialize(){
         genarateNextCustomerId();
@@ -108,7 +108,7 @@ public class TailorFormController {
         ObservableList<TailorTm>observableList = FXCollections.observableArrayList();
         try {
             observableList.clear();
-            List<TailorDto> dtoList=tailorModel.getAllTailor();
+            List<TailorDto> dtoList= tailorDAOImpl.getAllTailor();
             for (TailorDto dto : dtoList){
                 observableList.add(
                         new TailorTm(
@@ -143,7 +143,7 @@ public class TailorFormController {
     private void genarateNextCustomerId() {
         try {
             String previousTailorID = lblTailorId.getText();
-            String tailorID = tailorModel.genarateNextTailorId();
+            String tailorID = tailorDAOImpl.genarateNextTailorId();
             lblTailorId.setText(tailorID);
             clearFields();
             if (btnClearPressed){
@@ -180,7 +180,7 @@ public class TailorFormController {
             ButtonType pressedButton = buttonType.get();
             if (pressedButton.equals(ButtonType.YES)) {
                 try {
-                    boolean isDeleted = tailorModel.deleteTailor(tailorId);
+                    boolean isDeleted = tailorDAOImpl.deleteTailor(tailorId);
                     if (isDeleted) {
                         clearFields();
                         loadAllTailor();
@@ -213,7 +213,7 @@ public class TailorFormController {
         boolean isValid = validateTailor(tailorDto);
         if (isValid) {
             try {
-                boolean isSaved = tailorModel.saveTailor(tailorDto);
+                boolean isSaved = tailorDAOImpl.saveTailor(tailorDto);
                 if (isSaved) {
                     loadAllTailor();
                     genarateNextCustomerId();
@@ -276,7 +276,7 @@ public class TailorFormController {
         boolean isValid = validateTailor(tailorDto);
         if (isValid) {
             try {
-                boolean isUpdated = tailorModel.updateTailor(tailorDto);
+                boolean isUpdated = tailorDAOImpl.updateTailor(tailorDto);
                 if (isUpdated) {
                     clearFields();
                     genarateNextCustomerId();
@@ -295,7 +295,7 @@ public class TailorFormController {
         String tailorId = txtTailorId2.getText();
 
         try {
-            TailorDto tailorDto=tailorModel.searchTailor(tailorId);
+            TailorDto tailorDto= tailorDAOImpl.searchTailor(tailorId);
             if (tailorDto != null){
                 lblTailorId.setText(tailorDto.getTailorId());
                 txtFirstName.setText(tailorDto.getFirstName());

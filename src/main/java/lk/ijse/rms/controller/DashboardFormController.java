@@ -8,7 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.rms.db.DbConnection;
-import lk.ijse.rms.dao.CoatModel;
+import lk.ijse.rms.dao.custom.impl.CoatDAOImpl;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -28,7 +28,7 @@ public class DashboardFormController {
     private AnchorPane paneDashboard1;
     @FXML
     private JFXButton btnDashBoard;
-    private CoatModel coatModel =new CoatModel();
+    private CoatDAOImpl coatDAOImpl =new CoatDAOImpl();
     @FXML
     private JFXButton btnDashBoard1;
 

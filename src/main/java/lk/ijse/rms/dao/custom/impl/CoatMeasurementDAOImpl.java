@@ -1,4 +1,4 @@
-package lk.ijse.rms.dao;
+package lk.ijse.rms.dao.custom.impl;
 
 import lk.ijse.rms.dao.custom.CoatMeasurementDAO;
 import lk.ijse.rms.db.DbConnection;

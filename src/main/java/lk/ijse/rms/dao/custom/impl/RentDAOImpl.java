@@ -1,10 +1,11 @@
-package lk.ijse.rms.dao;
+package lk.ijse.rms.dao.custom.impl;
 
+import lk.ijse.rms.dao.custom.RentDAO;
 import lk.ijse.rms.db.DbConnection;
 
 import java.sql.*;
 
-public class RentModel {
+public class RentDAOImpl implements RentDAO {
 
 
 
@@ -35,7 +36,7 @@ public class RentModel {
 
     }
 
-    private String splitRentCoatID(String currentRentCoatID) {
+    public String splitRentCoatID(String currentRentCoatID) {
         if (currentRentCoatID != null){
             String [] split = currentRentCoatID.split("(RNT)");
 

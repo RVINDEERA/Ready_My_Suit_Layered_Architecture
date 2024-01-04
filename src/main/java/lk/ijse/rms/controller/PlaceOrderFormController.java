@@ -12,7 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.rms.dao.custom.impl.CustomerDAOImpl;
+import lk.ijse.rms.dao.custom.impl.*;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.*;
 import lk.ijse.rms.dto.tm.OrderCartTm;
@@ -123,12 +123,12 @@ public class PlaceOrderFormController {
 
     private CustomerDAOImpl customerModel = new CustomerDAOImpl();
     private PlaceOrderFormModel placeOrderFormModel = new PlaceOrderFormModel();
-    private OrderModel orderModel =new OrderModel();
-    private ItemModel itemModel = new ItemModel();
-    private ShirtMeasurementModel shirtMeasurementModel = new ShirtMeasurementModel();
-    private TrouserModel trouserModel = new TrouserModel();
+    OrderDAOImpl orderDAOImpl =new OrderDAOImpl();
+    private ItemDAOImpl itemDAOImpl = new ItemDAOImpl();
+    private ShirtMeasurementDAOImpl shirtMeasurementDAOImpl = new ShirtMeasurementDAOImpl();
+    private TrouserDAOImpl trouserDAOImpl = new TrouserDAOImpl();
     private CoatMeasurementDAOImpl coatMeasurementModel = new CoatMeasurementDAOImpl();
-    private TailorModel tailorModel = new TailorModel();
+    TailorDAOImpl tailorDAOImpl = new TailorDAOImpl();
 
     private ObservableList<OrderCartTm> obList = FXCollections.observableArrayList();
 
@@ -154,7 +154,7 @@ public class PlaceOrderFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<ItemDto> idList = itemModel.getAllItemId();
+            List<ItemDto> idList = itemDAOImpl.getAllItemId();
             for (ItemDto dto : idList){
                 obList.add(dto.getType());
             }
@@ -167,7 +167,7 @@ public class PlaceOrderFormController {
     private void loadAllTailors() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<TailorDto> tailorDtos = tailorModel.getAllTailor();
+            List<TailorDto> tailorDtos = tailorDAOImpl.getAllTailor();
 
             for (TailorDto dto : tailorDtos) {
                 obList.add(dto.getTailorId());
@@ -186,7 +186,7 @@ public class PlaceOrderFormController {
     private void generateNextOrderId() {
         try {
             String previousRentCoatId = lblOrderNo.getText();
-            String orderId = OrderModel.genarateNextOrderId();
+            String orderId = OrderDAOImpl.genarateNextOrderId();
             lblOrderNo.setText(orderId);
             clearFields();
             if (btnClearPressed){
@@ -304,12 +304,12 @@ public class PlaceOrderFormController {
         String item =cmbItem.getValue();
         String id = lblCustomerId.getText();
         String type = cmbItem.getValue();
-        ItemDto itemDto = itemModel.searchItemId(type);
+        ItemDto itemDto = itemDAOImpl.searchItemId(type);
         if (item.equals("SHIRT")){
             if (itemDto !=null){
                 lblItrmId.setText(itemDto.getItemId());
             }
-                ShirtDto shirtDto = shirtMeasurementModel.searchMeasurements(id);
+                ShirtDto shirtDto = shirtMeasurementDAOImpl.searchMeasurements(id);
                 if (shirtDto !=null ){
                     lblMeasurements.setText(shirtDto.getSmId());
                 }
@@ -317,7 +317,7 @@ public class PlaceOrderFormController {
             if (itemDto !=null){
                 lblItrmId.setText(itemDto.getItemId());
             }
-            TrouserDto trouserDto = trouserModel.searchMeasurements(id);
+            TrouserDto trouserDto = trouserDAOImpl.searchMeasurements(id);
             if (trouserDto !=null){
                 lblMeasurements.setText(trouserDto.getTrmId());
             }
