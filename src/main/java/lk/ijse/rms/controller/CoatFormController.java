@@ -8,11 +8,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.rms.dto.CoatDto;
-import lk.ijse.rms.dto.CustomerDto;
 import lk.ijse.rms.dto.tm.CoatTm;
-import lk.ijse.rms.dto.tm.CustomerTm;
-import lk.ijse.rms.dto.tm.TailorTm;
-import lk.ijse.rms.model.CoatModel;
+import lk.ijse.rms.dao.CoatModel;
 
 import java.sql.SQLException;
 import java.util.List;

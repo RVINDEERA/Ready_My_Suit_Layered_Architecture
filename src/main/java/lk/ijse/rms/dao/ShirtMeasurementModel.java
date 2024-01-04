@@ -1,4 +1,4 @@
-package lk.ijse.rms.model;
+package lk.ijse.rms.dao;
 
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.ShirtDto;
@@ -7,8 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ShirtMeasurementModel {
     public boolean shirtMeasurementSave(ShirtDto shirtDto) throws SQLException {

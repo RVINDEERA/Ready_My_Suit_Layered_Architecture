@@ -13,8 +13,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.rms.dto.CustomerDto;
 import lk.ijse.rms.dto.TrouserDto;
-import lk.ijse.rms.model.CustomerModel;
-import lk.ijse.rms.model.TrouserModel;
+import lk.ijse.rms.dao.custom.impl.CustomerDAOImpl;
+import lk.ijse.rms.dao.TrouserModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -78,7 +78,7 @@ public class TrouserMeasurementFormController {
 
     private TrouserModel trouserModel = new TrouserModel();
 
-    private CustomerModel customerModel = new CustomerModel();
+    private CustomerDAOImpl customerModel = new CustomerDAOImpl();
 
     public void initialize(){
         generateNextTrouserId();

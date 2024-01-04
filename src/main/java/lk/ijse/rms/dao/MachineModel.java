@@ -1,10 +1,8 @@
-package lk.ijse.rms.model;
+package lk.ijse.rms.dao;
 
 import lk.ijse.rms.db.DbConnection;
-import lk.ijse.rms.dto.CustomerDto;
 import lk.ijse.rms.dto.MachineDto;
 
-import java.awt.image.DataBuffer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

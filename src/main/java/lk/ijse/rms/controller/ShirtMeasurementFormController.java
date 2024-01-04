@@ -2,8 +2,6 @@ package lk.ijse.rms.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,13 +14,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.rms.dto.CustomerDto;
 import lk.ijse.rms.dto.ShirtDto;
-import lk.ijse.rms.model.CustomerModel;
-import lk.ijse.rms.model.ShirtMeasurementModel;
+import lk.ijse.rms.dao.custom.impl.CustomerDAOImpl;
+import lk.ijse.rms.dao.ShirtMeasurementModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.regex.Pattern;
 
 public class ShirtMeasurementFormController {
@@ -83,7 +80,7 @@ public class ShirtMeasurementFormController {
 
     @FXML
     private TextField txtcustomerid;
-    private CustomerModel customerModel = new CustomerModel();
+    private CustomerDAOImpl customerModel = new CustomerDAOImpl();
     private AnchorPane paneSelectItem;
     private ShirtMeasurementModel shirtMeasurementModel = new ShirtMeasurementModel();
 

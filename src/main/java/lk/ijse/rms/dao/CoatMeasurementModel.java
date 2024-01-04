@@ -1,4 +1,4 @@
-package lk.ijse.rms.model;
+package lk.ijse.rms.dao;
 
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.CoatMeasurementsDto;
@@ -17,12 +17,12 @@ public class CoatMeasurementModel {
 
         ResultSet resultSet = pstm.executeQuery();
         if (resultSet.next()){
-            return splitTrouserId(resultSet.getString(1));
+            return splitCoatId(resultSet.getString(1));
         }
-        return splitTrouserId(null);
+        return splitCoatId(null);
     }
 
-    private String splitTrouserId(String string) {
+    private String splitCoatId(String string) {
         if (string != null){
             String [] split = string.split("(CM)");
 

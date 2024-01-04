@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.rms.dto.UserDto;
-import lk.ijse.rms.model.RegisterModel;
+import lk.ijse.rms.dao.RegisterModel;
 
 import java.io.IOException;
 import java.sql.SQLException;

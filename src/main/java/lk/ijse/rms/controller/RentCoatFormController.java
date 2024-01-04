@@ -14,10 +14,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.rms.dao.custom.impl.CustomerDAOImpl;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.*;
 import lk.ijse.rms.dto.tm.CartTm;
-import lk.ijse.rms.model.*;
+import lk.ijse.rms.dao.*;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
@@ -117,7 +118,7 @@ public class RentCoatFormController {
     @FXML
     private DatePicker txtReturnDate;
 
-    private CustomerModel customerModel = new CustomerModel();
+    private CustomerDAOImpl customerModel = new CustomerDAOImpl();
     private CoatModel coatModel = new CoatModel();
 
     private RentModel rentModel=new RentModel();

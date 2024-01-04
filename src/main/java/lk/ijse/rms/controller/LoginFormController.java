@@ -10,7 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.rms.model.LoginModel;
+import lk.ijse.rms.dao.LoginModel;
 
 import java.io.IOException;
 import java.sql.SQLException;

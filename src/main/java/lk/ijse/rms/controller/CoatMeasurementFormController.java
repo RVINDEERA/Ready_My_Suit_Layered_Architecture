@@ -13,8 +13,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.rms.dto.CoatMeasurementsDto;
 import lk.ijse.rms.dto.CustomerDto;
-import lk.ijse.rms.model.CoatMeasurementModel;
-import lk.ijse.rms.model.CustomerModel;
+import lk.ijse.rms.dao.CoatMeasurementModel;
+import lk.ijse.rms.dao.custom.impl.CustomerDAOImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -81,7 +81,7 @@ public class CoatMeasurementFormController {
 
     private CoatMeasurementModel coatMeasurementModel = new CoatMeasurementModel();
 
-    private CustomerModel customerModel = new CustomerModel();
+    private CustomerDAOImpl customerModel = new CustomerDAOImpl();
     public void initialize(){
         generateNextCoatId();
         setDate();

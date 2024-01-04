@@ -1,6 +1,6 @@
-package lk.ijse.rms.model;
+package lk.ijse.rms.dao.custom.impl;
 
-import javafx.scene.control.ListCell;
+import lk.ijse.rms.dao.custom.CustomerDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.CustomerDto;
 
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerModel {
+public class CustomerDAOImpl implements CustomerDAO {
     public boolean customerSave(CustomerDto customerDto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement("INSERT INTO customer VALUES (?,?,?,?,?)");
@@ -47,7 +47,7 @@ public class CustomerModel {
         return customerDto;
     }
 
-    private String splitCustomerID(String currentCustomerID){
+    public String splitCustomerID(String currentCustomerID){
         if (currentCustomerID != null){
             String [] split = currentCustomerID.split("(CUS)");
 

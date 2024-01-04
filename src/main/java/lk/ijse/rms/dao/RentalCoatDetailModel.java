@@ -1,9 +1,7 @@
-package lk.ijse.rms.model;
+package lk.ijse.rms.dao;
 
 import lk.ijse.rms.db.DbConnection;
-import lk.ijse.rms.dto.CoatDto;
 import lk.ijse.rms.dto.tm.CartTm;
-import org.eclipse.jdt.internal.compiler.codegen.CachedIndexEntry;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

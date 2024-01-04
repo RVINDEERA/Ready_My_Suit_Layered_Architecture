@@ -1,14 +1,9 @@
-package lk.ijse.rms.model;
+package lk.ijse.rms.dao;
 
 import lk.ijse.rms.db.DbConnection;
-import lk.ijse.rms.dto.FabricDto;
 import lk.ijse.rms.dto.ItemDto;
-import lk.ijse.rms.dto.TailorDto;
-import lk.ijse.rms.dto.TrouserDto;
-import lk.ijse.rms.dto.tm.CartTm;
 import lk.ijse.rms.dto.tm.OrderCartTm;
 
-import javax.naming.PartialResultException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

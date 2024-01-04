@@ -1,4 +1,4 @@
-package lk.ijse.rms.model;
+package lk.ijse.rms.dao;
 
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.OrderDto;

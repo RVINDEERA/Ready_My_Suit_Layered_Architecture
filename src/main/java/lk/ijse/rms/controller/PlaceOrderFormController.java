@@ -12,11 +12,11 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.rms.dao.custom.impl.CustomerDAOImpl;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.*;
-import lk.ijse.rms.dto.tm.CartTm;
 import lk.ijse.rms.dto.tm.OrderCartTm;
-import lk.ijse.rms.model.*;
+import lk.ijse.rms.dao.*;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
@@ -27,7 +27,6 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -122,7 +121,7 @@ public class PlaceOrderFormController {
     @FXML
     private TextField txtQty;
 
-    private CustomerModel customerModel = new CustomerModel();
+    private CustomerDAOImpl customerModel = new CustomerDAOImpl();
     private PlaceOrderFormModel placeOrderFormModel = new PlaceOrderFormModel();
     private OrderModel orderModel =new OrderModel();
     private ItemModel itemModel = new ItemModel();

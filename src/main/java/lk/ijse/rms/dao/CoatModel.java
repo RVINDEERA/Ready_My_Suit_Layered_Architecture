@@ -1,8 +1,7 @@
-package lk.ijse.rms.model;
+package lk.ijse.rms.dao;
 
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.CoatDto;
-import lk.ijse.rms.dto.CustomerDto;
 import lk.ijse.rms.dto.tm.CartTm;
 
 import java.sql.Connection;

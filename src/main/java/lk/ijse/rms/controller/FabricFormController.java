@@ -10,9 +10,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.rms.dto.*;
 import lk.ijse.rms.dto.tm.FabricTm;
-import lk.ijse.rms.dto.tm.MachineTm;
-import lk.ijse.rms.model.FabricModel;
-import lk.ijse.rms.model.ItemModel;
+import lk.ijse.rms.dao.FabricModel;
+import lk.ijse.rms.dao.ItemModel;
 
 import java.sql.SQLException;
 import java.util.List;

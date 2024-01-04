@@ -5,12 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.rms.db.DbConnection;
-import lk.ijse.rms.dto.CoatDto;
-import lk.ijse.rms.model.CoatModel;
+import lk.ijse.rms.dao.CoatModel;
 
 import java.io.IOException;
 import java.sql.Connection;

@@ -9,7 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.rms.dto.CustomerDto;
 import lk.ijse.rms.dto.tm.CustomerTm;
-import lk.ijse.rms.model.CustomerModel;
+import lk.ijse.rms.dao.custom.impl.CustomerDAOImpl;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -60,7 +60,7 @@ public class CustomerFormController {
     @FXML
     private Label lblCustomerId;
 
-    private CustomerModel customerModel = new CustomerModel();
+    CustomerDAOImpl customerModel = new CustomerDAOImpl();
 
     public  void initialize(){
         genarateNextCustomerId();
