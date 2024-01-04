@@ -127,7 +127,7 @@ public class PlaceOrderFormController {
     private ItemModel itemModel = new ItemModel();
     private ShirtMeasurementModel shirtMeasurementModel = new ShirtMeasurementModel();
     private TrouserModel trouserModel = new TrouserModel();
-    private CoatMeasurementModel coatMeasurementModel = new CoatMeasurementModel();
+    private CoatMeasurementDAOImpl coatMeasurementModel = new CoatMeasurementDAOImpl();
     private TailorModel tailorModel = new TailorModel();
 
     private ObservableList<OrderCartTm> obList = FXCollections.observableArrayList();

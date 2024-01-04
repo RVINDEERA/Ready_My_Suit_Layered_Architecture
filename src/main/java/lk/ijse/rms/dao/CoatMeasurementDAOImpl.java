@@ -1,5 +1,6 @@
 package lk.ijse.rms.dao;
 
+import lk.ijse.rms.dao.custom.CoatMeasurementDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.CoatMeasurementsDto;
 
@@ -8,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CoatMeasurementModel {
+public class CoatMeasurementDAOImpl implements CoatMeasurementDAO {
     public String generateNextCoatId() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -22,7 +23,7 @@ public class CoatMeasurementModel {
         return splitCoatId(null);
     }
 
-    private String splitCoatId(String string) {
+    public String splitCoatId(String string) {
         if (string != null){
             String [] split = string.split("(CM)");
 

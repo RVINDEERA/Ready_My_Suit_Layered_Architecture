@@ -13,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.rms.dto.CoatMeasurementsDto;
 import lk.ijse.rms.dto.CustomerDto;
-import lk.ijse.rms.dao.CoatMeasurementModel;
+import lk.ijse.rms.dao.CoatMeasurementDAOImpl;
 import lk.ijse.rms.dao.custom.impl.CustomerDAOImpl;
 
 import java.io.IOException;
@@ -79,9 +79,9 @@ public class CoatMeasurementFormController {
     @FXML
     private TextField txtlength;
 
-    private CoatMeasurementModel coatMeasurementModel = new CoatMeasurementModel();
+    CoatMeasurementDAOImpl coatMeasurementModel = new CoatMeasurementDAOImpl();
 
-    private CustomerDAOImpl customerModel = new CustomerDAOImpl();
+    CustomerDAOImpl customerModel = new CustomerDAOImpl();
     public void initialize(){
         generateNextCoatId();
         setDate();
