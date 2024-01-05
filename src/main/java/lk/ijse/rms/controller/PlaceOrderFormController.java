@@ -186,7 +186,7 @@ public class PlaceOrderFormController {
     private void generateNextOrderId() {
         try {
             String previousRentCoatId = lblOrderNo.getText();
-            String orderId = OrderDAOImpl.genarateNextOrderId();
+            String orderId = orderDAOImpl.genarateNextOrderId();
             lblOrderNo.setText(orderId);
             clearFields();
             if (btnClearPressed){

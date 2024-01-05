@@ -14,7 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.rms.dto.OrderDto;
 import lk.ijse.rms.dto.tm.OrderTm;
-import lk.ijse.rms.dao.OrderDAOImpl;
+import lk.ijse.rms.dao.custom.impl.OrderDAOImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;

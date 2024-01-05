@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface OrderDAO {
-   // String genarateNextOrderId() throws SQLException ;
-   // String splitOrderId(String string) ;
+    String genarateNextOrderId() throws SQLException ;
+    String splitOrderId(String string) ;
     boolean saveOrder(String orderId, String date, String customerId, String tailorId, double fullAmount, double advance, double balance, String status, String completeDate) throws SQLException ;
     List<OrderDto> getAllCustomer() throws SQLException ;
     boolean updateOrderStatus(String id,String status) throws SQLException ;

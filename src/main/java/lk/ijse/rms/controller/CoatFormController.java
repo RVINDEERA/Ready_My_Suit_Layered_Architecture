@@ -167,7 +167,7 @@ public class CoatFormController {
             ButtonType pressedButton = buttonType.get();
             if (pressedButton.equals(ButtonType.YES)) {
                 try {
-                    boolean isDeleted = CoatDAOImpl.coatDelete(id);
+                    boolean isDeleted = coatDAOImpl.coatDelete(id);
                     if (isDeleted) {
                         new Alert(Alert.AlertType.INFORMATION, "Coat " + id + " Deleted").show();
                         clearField();

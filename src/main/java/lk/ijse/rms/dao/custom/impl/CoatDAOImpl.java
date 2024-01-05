@@ -1,5 +1,6 @@
 package lk.ijse.rms.dao.custom.impl;
 
+import lk.ijse.rms.dao.custom.CoatDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.CoatDto;
 import lk.ijse.rms.dto.tm.CartTm;
@@ -11,8 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CoatDAOImpl {
-    public static boolean coatDelete(String id) throws SQLException {
+public class CoatDAOImpl implements CoatDAO {
+    public boolean coatDelete(String id) throws SQLException {
         Connection connection=DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement("DELETE FROM coat WHERE coatId = ?");
 
