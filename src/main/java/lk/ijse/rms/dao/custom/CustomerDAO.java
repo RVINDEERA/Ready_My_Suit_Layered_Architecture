@@ -6,13 +6,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface CustomerDAO {
-    boolean customerSave(CustomerDto customerDto) throws SQLException;
-    CustomerDto searchCustomer(String customerPhone ) throws SQLException;
+    boolean customerSave(CustomerDto customerDto) throws SQLException, ClassNotFoundException;
+    CustomerDto searchCustomer(String customerPhone ) throws SQLException, ClassNotFoundException;
     String splitCustomerID(String currentCustomerID);
-    String genarateNextCustomerId() throws SQLException ;
-    boolean updateCustomer(CustomerDto customerDto) throws SQLException ;
-    boolean customerDelete(String id) throws SQLException ;
-    List<CustomerDto> getAllCustomer() throws SQLException ;
-    CustomerDto searchCustomerId(String customerSearch) throws SQLException ;
+    String genarateNextCustomerId() throws SQLException, ClassNotFoundException;
+    boolean updateCustomer(CustomerDto customerDto) throws SQLException, ClassNotFoundException;
+    boolean customerDelete(String id) throws SQLException, ClassNotFoundException;
+    List<CustomerDto> getAllCustomer() throws SQLException, ClassNotFoundException;
+    CustomerDto searchCustomerId(String customerSearch) throws SQLException, ClassNotFoundException;
 
     }

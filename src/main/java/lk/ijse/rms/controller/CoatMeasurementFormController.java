@@ -220,7 +220,7 @@ public class CoatMeasurementFormController {
             }else{
                 new Alert(Alert.AlertType.ERROR,"Not a registered Customer!").show();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

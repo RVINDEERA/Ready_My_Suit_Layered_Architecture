@@ -386,7 +386,7 @@ public class RentCoatFormController {
 
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
