@@ -98,7 +98,7 @@ public class CoatFormController {
         CoatDto coatDto = new CoatDto();
         ObservableList<CoatTm> obList = FXCollections.observableArrayList();
         try {
-            List<CoatDto> dtoList= coatDAOImpl.getAllCoat();
+            List<CoatDto> dtoList= coatDAOImpl.getAll();
 
             for (CoatDto dto : dtoList){
                 obList.add(
@@ -114,7 +114,7 @@ public class CoatFormController {
                 );
             }
             tblCoat.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -133,13 +133,13 @@ public class CoatFormController {
     private void genarateNextCoatId() {
         try {
             String previousCoatID = lblCoatId.getText();
-            String coatId = coatDAOImpl.genarateNextMachineId();
+            String coatId = coatDAOImpl.generateNextID();
             lblCoatId.setText(coatId);
             clearField();
             if (btnClearPressed){
                 lblCoatId.setText(previousCoatID);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
@@ -167,7 +167,7 @@ public class CoatFormController {
             ButtonType pressedButton = buttonType.get();
             if (pressedButton.equals(ButtonType.YES)) {
                 try {
-                    boolean isDeleted = coatDAOImpl.coatDelete(id);
+                    boolean isDeleted = coatDAOImpl.delete(id);
                     if (isDeleted) {
                         new Alert(Alert.AlertType.INFORMATION, "Coat " + id + " Deleted").show();
                         clearField();
@@ -175,7 +175,7 @@ public class CoatFormController {
                         loadAllCoat();
 
                     }
-                } catch (SQLException e) {
+                } catch (SQLException | ClassNotFoundException e) {
                     new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
                 }
             }
@@ -198,14 +198,14 @@ public class CoatFormController {
         boolean isValid = validateCoat(coatDto);
         if (isValid){
             try {
-                boolean isSaved = coatDAOImpl.saveCoat(coatDto);
+                boolean isSaved = coatDAOImpl.save(coatDto);
                 if (isSaved){
                     clearField();
                     loadAllCoat();
                     genarateNextCoatId();
                     new Alert(Alert.AlertType.INFORMATION,"New Coat Saved Successful").show();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
             }
         }
@@ -256,14 +256,14 @@ public class CoatFormController {
 
         CoatDto coatDto = new CoatDto(coatId,type,color,avail,date,price,size);
         try {
-            boolean isUpdated = coatDAOImpl.updateCoat(coatDto);
+            boolean isUpdated = coatDAOImpl.update(coatDto);
             if (isUpdated) {
                 new Alert(Alert.AlertType.INFORMATION, "Coat Updated Successfully").show();
                 genarateNextCoatId();
                 loadAllCoat();
 
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
 
@@ -274,7 +274,7 @@ public class CoatFormController {
     void txtCoatIdSearch(ActionEvent event) {
         String id =txtSearch.getText();
         try {
-            CoatDto coatDto = coatDAOImpl.searchCoat(id);
+            CoatDto coatDto = coatDAOImpl.search(id);
             if (coatDto != null){
                 lblCoatId.setText(coatDto.getCoatId());
                 txtType.setText(coatDto.getType());
@@ -289,7 +289,7 @@ public class CoatFormController {
                 new Alert(Alert.AlertType.ERROR,"Invalid Coat ID").show();
                 txtSearch.setText("");
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
 

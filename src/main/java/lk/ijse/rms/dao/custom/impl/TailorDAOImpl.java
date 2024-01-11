@@ -1,5 +1,6 @@
 package lk.ijse.rms.dao.custom.impl;
 
+import lk.ijse.rms.dao.SQLUtil;
 import lk.ijse.rms.dao.custom.TailorDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.TailorDto;
@@ -12,26 +13,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TailorDAOImpl implements TailorDAO {
-    public boolean saveTailor(TailorDto tailorDto) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement pstm =connection.prepareStatement("INSERT INTO tailor VALUES (?,?,?,?,?,?,?)");
+    public boolean save(TailorDto tailorDto) throws SQLException, ClassNotFoundException {
+//        Connection connection = DbConnection.getInstance().getConnection();
+//        PreparedStatement pstm =connection.prepareStatement("INSERT INTO tailor VALUES (?,?,?,?,?,?,?)");
+//
+//        pstm.setString(1,tailorDto.getTailorId());
+//        pstm.setString(2,tailorDto.getFirstName());
+//        pstm.setString(3,tailorDto.getLastName());
+//        pstm.setString(4,tailorDto.getTailorNIC());
+//        pstm.setString(5,tailorDto.getAddress());
+//        pstm.setString(6,tailorDto.getPhoneNumber());
+//        pstm.setString(7,tailorDto.getSalary());
+//
+//        return pstm.executeUpdate() > 0;
 
-        pstm.setString(1,tailorDto.getTailorId());
-        pstm.setString(2,tailorDto.getFirstName());
-        pstm.setString(3,tailorDto.getLastName());
-        pstm.setString(4,tailorDto.getTailorNIC());
-        pstm.setString(5,tailorDto.getAddress());
-        pstm.setString(6,tailorDto.getPhoneNumber());
-        pstm.setString(7,tailorDto.getSalary());
-
-        return pstm.executeUpdate() > 0;
+        return SQLUtil.execute("INSERT INTO tailor VALUES (?,?,?,?,?,?,?)",tailorDto.getTailorId(),tailorDto.getFirstName(),tailorDto.getLastName(),tailorDto.getTailorNIC(),tailorDto.getAddress(),tailorDto.getPhoneNumber(),tailorDto.getSalary());
     }
 
-    public String genarateNextTailorId() throws SQLException {
-        Connection connection=DbConnection.getInstance().getConnection();
-        PreparedStatement pstm =connection.prepareStatement("SELECT tailorId FROM tailor ORDER BY  tailorId DESC LIMIT 1");
+    public String generateNextID() throws SQLException, ClassNotFoundException {
+//        Connection connection=DbConnection.getInstance().getConnection();
+//        PreparedStatement pstm =connection.prepareStatement("SELECT tailorId FROM tailor ORDER BY  tailorId DESC LIMIT 1");
+//
+//        ResultSet resultSet =pstm.executeQuery();
 
-        ResultSet resultSet =pstm.executeQuery();
+        ResultSet resultSet =SQLUtil.execute("SELECT tailorId FROM tailor ORDER BY  tailorId DESC LIMIT 1");
         if (resultSet.next()){
             return splitCustomerID(resultSet.getString(1));
         }
@@ -50,28 +55,32 @@ public class TailorDAOImpl implements TailorDAO {
     }
 
 
-    public boolean updateTailor(TailorDto tailorDto) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("UPDATE  tailor SET firstName =?, lastName=?, tailorNIC=?, address=?, phoneNUmber=?, salary=? WHERE tailorId = ?");
+    public boolean update(TailorDto tailorDto) throws SQLException, ClassNotFoundException {
+//        Connection connection = DbConnection.getInstance().getConnection();
+//        PreparedStatement pstm = connection.prepareStatement("UPDATE  tailor SET firstName =?, lastName=?, tailorNIC=?, address=?, phoneNUmber=?, salary=? WHERE tailorId = ?");
+//
+//        pstm.setString(1,tailorDto.getFirstName());
+//        pstm.setString(2,tailorDto.getLastName());
+//        pstm.setString(3,tailorDto.getTailorNIC());
+//        pstm.setString(4,tailorDto.getAddress());
+//        pstm.setString(5,tailorDto.getPhoneNumber());
+//        pstm.setString(6,tailorDto.getSalary());
+//        pstm.setString(7,tailorDto.getTailorId());
+//
+//        return pstm.executeUpdate() >0;
 
-        pstm.setString(1,tailorDto.getFirstName());
-        pstm.setString(2,tailorDto.getLastName());
-        pstm.setString(3,tailorDto.getTailorNIC());
-        pstm.setString(4,tailorDto.getAddress());
-        pstm.setString(5,tailorDto.getPhoneNumber());
-        pstm.setString(6,tailorDto.getSalary());
-        pstm.setString(7,tailorDto.getTailorId());
-
-        return pstm.executeUpdate() >0;
+        return SQLUtil.execute("UPDATE  tailor SET firstName =?, lastName=?, tailorNIC=?, address=?, phoneNUmber=?, salary=? WHERE tailorId = ?",tailorDto.getFirstName(),tailorDto.getLastName(),tailorDto.getTailorNIC(),tailorDto.getAddress(),tailorDto.getPhoneNumber(),tailorDto.getSalary(),tailorDto.getTailorId());
     }
 
-    public TailorDto searchTailor(String tailorId) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM tailor WHERE tailorId = ?");
+    public TailorDto search(String tailorId) throws SQLException, ClassNotFoundException {
+//        Connection connection = DbConnection.getInstance().getConnection();
+//        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM tailor WHERE tailorId = ?");
+//
+//        pstm.setString(1,tailorId);
+//
+//        ResultSet resultSet = pstm.executeQuery();
 
-        pstm.setString(1,tailorId);
-
-        ResultSet resultSet = pstm.executeQuery();
+        ResultSet resultSet = SQLUtil.execute("SELECT * FROM tailor WHERE tailorId = ?",tailorId);
         TailorDto tailorDto=null;
 
         if (resultSet.next()){
@@ -89,20 +98,24 @@ public class TailorDAOImpl implements TailorDAO {
         return tailorDto;
     }
 
-    public boolean deleteTailor(String tailorId) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("DELETE FROM tailor WHERE tailorId = ?");
+    public boolean delete(String tailorId) throws SQLException, ClassNotFoundException {
+//        Connection connection = DbConnection.getInstance().getConnection();
+//        PreparedStatement pstm = connection.prepareStatement("DELETE FROM tailor WHERE tailorId = ?");
+//
+//        pstm.setString(1,tailorId);
+//
+//        return pstm.executeUpdate() > 0;
 
-        pstm.setString(1,tailorId);
-
-        return pstm.executeUpdate() > 0;
+        return SQLUtil.execute("DELETE FROM tailor WHERE tailorId = ?",tailorId);
     }
 
-    public List<TailorDto> getAllTailor() throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM tailor");
+    public List<TailorDto> getAll() throws SQLException, ClassNotFoundException {
+//        Connection connection = DbConnection.getInstance().getConnection();
+//        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM tailor");
+//
+//        ResultSet resultSet = pstm.executeQuery();
 
-        ResultSet resultSet = pstm.executeQuery();
+        ResultSet resultSet = SQLUtil.execute("SELECT * FROM tailor");
 
         ArrayList<TailorDto> dtoList = new ArrayList<>();
 
@@ -122,11 +135,13 @@ public class TailorDAOImpl implements TailorDAO {
         return dtoList;
     }
 
-    public List<TailorDto> getAllMachine() throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-        String sql = "SELECT * FROM tailor";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        ResultSet resultSet = pstm.executeQuery();
+    public List<TailorDto> getAllMachine() throws SQLException, ClassNotFoundException {
+//        Connection connection = DbConnection.getInstance().getConnection();
+//        String sql = "SELECT * FROM tailor";
+//        PreparedStatement pstm = connection.prepareStatement(sql);
+//        ResultSet resultSet = pstm.executeQuery();
+
+        ResultSet resultSet = SQLUtil.execute("SELECT * FROM tailor");
 
         ArrayList<TailorDto> dtoList = new ArrayList<>();
 

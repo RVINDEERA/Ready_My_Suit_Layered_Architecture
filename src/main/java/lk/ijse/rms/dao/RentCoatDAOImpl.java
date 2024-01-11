@@ -43,7 +43,7 @@ public class RentCoatDAOImpl {
                 connection.rollback();
             }
 
-        }catch (SQLException e){
+        }catch (SQLException | ClassNotFoundException e){
             if(connection !=null)connection.rollback();
             e.printStackTrace();
         } finally {

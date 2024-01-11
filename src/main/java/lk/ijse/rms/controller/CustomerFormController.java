@@ -88,7 +88,7 @@ public class CustomerFormController {
         CustomerDto customerDto = new CustomerDto();
         ObservableList<CustomerTm> obList = FXCollections.observableArrayList();
         try {
-            List<CustomerDto> dtoList=customerModel.getAllCustomer();
+            List<CustomerDto> dtoList=customerModel.getAll();
 
             for (CustomerDto dto : dtoList){
                 obList.add(
@@ -118,7 +118,7 @@ public class CustomerFormController {
     private void genarateNextCustomerId() {
         try {
             String previousCustomerID = lblCustomerId.getText();
-            String customerID = customerModel.genarateNextCustomerId();
+            String customerID = customerModel.generateNextID();
             lblCustomerId.setText(customerID);
             clearFields();
             if (btnClearPressed){
@@ -141,7 +141,7 @@ public class CustomerFormController {
             ButtonType pressedButton = buttonType.get();
             if (pressedButton.equals(ButtonType.YES)) {
                 try {
-                    boolean isDeleted = customerModel.customerDelete(id);
+                    boolean isDeleted = customerModel.delete(id);
                     if (isDeleted) {
                         new Alert(Alert.AlertType.INFORMATION, "Customer " + id + " Deleted").show();
                         loadAllCustomer();
@@ -174,7 +174,7 @@ public class CustomerFormController {
         boolean isValid = validateCustomer(customerDto);
         if (isValid) {
             try {
-                boolean isSaved = customerModel.customerSave(customerDto);
+                boolean isSaved = customerModel.save(customerDto);
                 if (isSaved) {
                     loadAllCustomer();
                     clearFields();
@@ -237,7 +237,7 @@ public class CustomerFormController {
 
         CustomerDto customerDto = new CustomerDto(id,fName,lName,address,phone);
         try {
-            boolean isUpdated = customerModel.updateCustomer(customerDto);
+            boolean isUpdated = customerModel.update(customerDto);
             if (isUpdated) {
                 new Alert(Alert.AlertType.INFORMATION, "Customer Updated Successfully").show();
                 genarateNextCustomerId();
@@ -256,7 +256,7 @@ public class CustomerFormController {
         try {
            CustomerDto customerDto;
             if (customerSearch.matches("(cus|CUS|Cus)(\\d{3})")) {
-                customerDto = customerModel.searchCustomerId(customerSearch);
+                customerDto = customerModel.search(customerSearch);
             } else {
                 customerDto =customerModel.searchCustomer(customerSearch);
             }

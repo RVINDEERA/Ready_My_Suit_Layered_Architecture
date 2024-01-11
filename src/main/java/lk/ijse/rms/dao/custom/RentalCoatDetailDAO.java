@@ -5,6 +5,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface RentalCoatDetailDAO {
-    boolean saveRentCoatDetails(String rentId, List<CartTm> cartTmList) throws SQLException ;
-    boolean saveRentCoatDetails(String rentId, CartTm tm) throws SQLException ;
+    boolean saveRentCoatDetails(String rentId, List<CartTm> cartTmList) throws SQLException, ClassNotFoundException;
+    boolean saveRentCoatDetails(String rentId, CartTm tm) throws SQLException, ClassNotFoundException;
 }

@@ -84,7 +84,7 @@ public class FabricFormController {
 
         ObservableList<FabricTm> obList = FXCollections.observableArrayList();
         try {
-            List<FabricDto> dtoList= fabricDAOImpl.getAllCustomer();
+            List<FabricDto> dtoList= fabricDAOImpl.getAll();
 
             for (FabricDto dto : dtoList){
                 obList.add(
@@ -98,7 +98,7 @@ public class FabricFormController {
                 );
             }
             tblFabric.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -106,13 +106,13 @@ public class FabricFormController {
     private void genarateNextFabricId() {
         try {
             String previousFabricID = lblFabricId.getText();
-            String fabricId = fabricDAOImpl.genarateNextFabricId();
+            String fabricId = fabricDAOImpl.generateNextID();
             lblFabricId.setText(fabricId);
             clearFields();
             if (btnClearPressed){
                 lblFabricId.setText(previousFabricID);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
@@ -141,7 +141,7 @@ public class FabricFormController {
             ButtonType pressedButton = buttonType.get();
             if (pressedButton.equals(ButtonType.YES)) {
                 try {
-                    boolean isDeleted = fabricDAOImpl.fabricDelete(id);
+                    boolean isDeleted = fabricDAOImpl.delete(id);
                     if (isDeleted) {
                         new Alert(Alert.AlertType.INFORMATION, "Fabric " + id + " Deleted").show();
                         genarateNextFabricId();
@@ -149,7 +149,7 @@ public class FabricFormController {
                         clearFields();
 
                     }
-                } catch (SQLException e) {
+                } catch (SQLException | ClassNotFoundException e) {
                     new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
                 }
             }
@@ -160,12 +160,12 @@ public class FabricFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<ItemDto> idList = itemDAOImpl.getAllTypes();
+            List<ItemDto> idList = itemDAOImpl.getAll();
             for (ItemDto dto : idList){
                 obList.add(dto.getType());
             }
             cmbType.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -186,14 +186,14 @@ public class FabricFormController {
         boolean isValid = validateFabric(fabricDto);
         if (isValid) {
             try {
-                boolean isSaved = fabricDAOImpl.fabricSave(fabricDto);
+                boolean isSaved = fabricDAOImpl.save(fabricDto);
                 if (isSaved) {
                     loadAllFabrics();
                     clearFields();
                     genarateNextFabricId();
                     new Alert(Alert.AlertType.INFORMATION, "Fabric Saved Successfully").show();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
         }
@@ -232,13 +232,13 @@ public class FabricFormController {
         boolean isVlidate = validateFabric(fabricDto);
         if (isVlidate) {
             try {
-                boolean isUpdated = fabricDAOImpl.updateFabric(fabricDto);
+                boolean isUpdated = fabricDAOImpl.update(fabricDto);
                 if (isUpdated) {
                     new Alert(Alert.AlertType.INFORMATION, "Fabric Updated Successfully").show();
                         genarateNextFabricId();
                         loadAllFabrics();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
         }
@@ -249,7 +249,7 @@ public class FabricFormController {
     void txtFabricSearch(ActionEvent event) {
         String id =txtSearch.getText();
         try {
-            FabricDto fabricDto = fabricDAOImpl.searchFabric(id);
+            FabricDto fabricDto = fabricDAOImpl.search(id);
             if (fabricDto != null){
                 lblFabricId.setText(fabricDto.getFabricId());
                 txtName.setText(fabricDto.getName());
@@ -261,7 +261,7 @@ public class FabricFormController {
                 new Alert(Alert.AlertType.ERROR,"Invalid Fabric ID").show();
                 txtSearch.setText("");
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
 

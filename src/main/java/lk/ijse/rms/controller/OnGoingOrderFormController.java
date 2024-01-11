@@ -98,7 +98,7 @@ public class OnGoingOrderFormController {
         ObservableList<OrderTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<OrderDto> dtoList = orderDAOImpl.getAllCustomer();
+            List<OrderDto> dtoList = orderDAOImpl.getAll();
 
             for (OrderDto dto : dtoList) {
                 obList.add(
@@ -117,7 +117,7 @@ public class OnGoingOrderFormController {
             }
 
             tblOrder.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
@@ -137,7 +137,7 @@ public class OnGoingOrderFormController {
                 this.paneCustomer.getChildren().clear();
                 this.paneCustomer.getChildren().add(rootNode);
             }
-        } catch (SQLException | IOException e) {
+        } catch (SQLException | IOException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
@@ -147,12 +147,12 @@ public class OnGoingOrderFormController {
         String id =txtCustomerId2.getText();
 
         try {
-            OrderDto orderDto = orderDAOImpl.searchOrder(id);
+            OrderDto orderDto = orderDAOImpl.search(id);
             if (orderDto != null) {
                 txtOrderId.setText(orderDto.getOrderId());
                 txtStatus.setText(orderDto.getStatus());
             }
-        } catch (Exception e) {
+        } catch (Exception e ) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
 
         }

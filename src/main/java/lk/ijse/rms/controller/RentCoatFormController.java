@@ -175,7 +175,7 @@ public class RentCoatFormController {
             if (btnClearPressed){
                 lblRentNo.setText(previousRentCoatId);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
@@ -213,7 +213,7 @@ public class RentCoatFormController {
                 obList.add(dto.getType());
             }
             cmbRentalBond.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -240,7 +240,7 @@ public class RentCoatFormController {
                 obList.add(dto.getCoatId());
             }
             cmbCoatId.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -345,7 +345,7 @@ public class RentCoatFormController {
     void cmbCoatOnAction(ActionEvent event) {
         String id = cmbCoatId.getValue();
         try {
-            CoatDto coatDto = coatDAOImpl.searchCoat(id);
+            CoatDto coatDto = coatDAOImpl.search(id);
             lblUnitPrice.setText(coatDto.getPrice());
             lblType.setText(coatDto.getType());
             lblSize.setText(coatDto.getSize());
@@ -353,7 +353,7 @@ public class RentCoatFormController {
             lblMfgDate.setText(coatDto.getDate());
             lblAvail.setText(coatDto.getAvailability());
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

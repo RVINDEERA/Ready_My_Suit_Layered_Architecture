@@ -159,7 +159,7 @@ public class PlaceOrderFormController {
                 obList.add(dto.getType());
             }
             cmbItem.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -167,13 +167,13 @@ public class PlaceOrderFormController {
     private void loadAllTailors() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<TailorDto> tailorDtos = tailorDAOImpl.getAllTailor();
+            List<TailorDto> tailorDtos = tailorDAOImpl.getAll();
 
             for (TailorDto dto : tailorDtos) {
                 obList.add(dto.getTailorId());
             }
             cmbTailorId.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -186,13 +186,13 @@ public class PlaceOrderFormController {
     private void generateNextOrderId() {
         try {
             String previousRentCoatId = lblOrderNo.getText();
-            String orderId = orderDAOImpl.genarateNextOrderId();
+            String orderId = orderDAOImpl.generateNextID();
             lblOrderNo.setText(orderId);
             clearFields();
             if (btnClearPressed){
                 lblOrderNo.setText(previousRentCoatId);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
@@ -300,16 +300,16 @@ public class PlaceOrderFormController {
     }
 
     @FXML
-    void cmbCoatOnAction(ActionEvent event) throws SQLException {
+    void cmbCoatOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String item =cmbItem.getValue();
         String id = lblCustomerId.getText();
         String type = cmbItem.getValue();
-        ItemDto itemDto = itemDAOImpl.searchItemId(type);
+        ItemDto itemDto = itemDAOImpl.search(type);
         if (item.equals("SHIRT")){
             if (itemDto !=null){
                 lblItrmId.setText(itemDto.getItemId());
             }
-                ShirtDto shirtDto = shirtMeasurementDAOImpl.searchMeasurements(id);
+                ShirtDto shirtDto = shirtMeasurementDAOImpl.search(id);
                 if (shirtDto !=null ){
                     lblMeasurements.setText(shirtDto.getSmId());
                 }
@@ -317,7 +317,7 @@ public class PlaceOrderFormController {
             if (itemDto !=null){
                 lblItrmId.setText(itemDto.getItemId());
             }
-            TrouserDto trouserDto = trouserDAOImpl.searchMeasurements(id);
+            TrouserDto trouserDto = trouserDAOImpl.search(id);
             if (trouserDto !=null){
                 lblMeasurements.setText(trouserDto.getTrmId());
             }
@@ -325,7 +325,7 @@ public class PlaceOrderFormController {
             if (itemDto !=null){
                 lblItrmId.setText(itemDto.getItemId());
             }
-            CoatMeasurementsDto coatMeasurementsDto =coatMeasurementModel.searchMeasurements(id);
+            CoatMeasurementsDto coatMeasurementsDto =coatMeasurementModel.search(id);
             if (coatMeasurementsDto != null){
                 lblMeasurements.setText(coatMeasurementsDto.getCmId());
             }

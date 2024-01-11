@@ -1,5 +1,6 @@
 package lk.ijse.rms.dao.custom.impl;
 
+import lk.ijse.rms.dao.SQLUtil;
 import lk.ijse.rms.dao.custom.RentBondDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.RentalBondDto;
@@ -13,15 +14,18 @@ import java.util.List;
 
 public class RentBondDAOImpl implements RentBondDAO {
 
-    public List<RentalBondDto> loadAllBond() throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
+    public List<RentalBondDto> loadAllBond() throws SQLException, ClassNotFoundException {
+//        Connection connection = DbConnection.getInstance().getConnection();
+//
+//        String sql = "SELECT * FROM rentalbond";
+//        PreparedStatement pstm = connection.prepareStatement(sql);
+//
+//        ResultSet resultSet = pstm.executeQuery();
 
-        String sql = "SELECT * FROM rentalbond";
-        PreparedStatement pstm = connection.prepareStatement(sql);
+        ResultSet resultSet = SQLUtil.execute( "SELECT * FROM rentalbond");
 
         List<RentalBondDto> bondList = new ArrayList<>();
 
-        ResultSet resultSet = pstm.executeQuery();
         while (resultSet.next()) {
             bondList.add(new RentalBondDto(
                     resultSet.getString(1),

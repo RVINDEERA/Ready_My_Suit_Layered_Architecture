@@ -99,7 +99,7 @@ public class TrouserMeasurementFormController {
             if (btnClearPressed){
                 lblMeasurementId.setText(previousTrouserID);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
@@ -150,13 +150,13 @@ public class TrouserMeasurementFormController {
         TrouserDto trouserDto = new TrouserDto(measurementId,customerId,date,length,waist,seat,halfSeat,knee,bottom,crotch);
 
         try {
-            boolean isSaved = trouserDAOImpl.saveTroserMeasurements(trouserDto);
+            boolean isSaved = trouserDAOImpl.save(trouserDto);
             if (isSaved){
                 clearFields();
                 new Alert(Alert.AlertType.INFORMATION,"New Trouser Measurements Saved Successful").show();
                 generateNextTrouserId();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
@@ -176,12 +176,12 @@ public class TrouserMeasurementFormController {
 
         TrouserDto trouserDto = new TrouserDto(measurementId,customerId,date,length,waist,seat,halfSeat,knee,bottom,crotch);
         try {
-            boolean isUpdated = trouserDAOImpl.updateTrouser(trouserDto);
+            boolean isUpdated = trouserDAOImpl.update(trouserDto);
             if (isUpdated) {
                 new Alert(Alert.AlertType.INFORMATION, "Measurements Updated Successfully").show();
                 generateNextTrouserId();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
@@ -195,7 +195,7 @@ public class TrouserMeasurementFormController {
                 lblCustomerID.setText(customerDto.getCustomerId());
                 String trouserM = lblCustomerID.getText();
                     try {
-                        TrouserDto trouserDto = trouserDAOImpl.searchMeasurements(trouserM);
+                        TrouserDto trouserDto = trouserDAOImpl.search(trouserM);
                         if (trouserDto !=null){
                             lblMeasurementId.setText(trouserDto.getTrmId());
                             lblDate.setText(trouserDto.getDate());

@@ -87,7 +87,7 @@ public class MachineFormController {
                 obList.add(dto.getTailorId());
             }
             cmbTailorId.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -96,7 +96,7 @@ public class MachineFormController {
         MachineDto machineDto = new MachineDto();
         ObservableList<MachineTm> obList = FXCollections.observableArrayList();
         try {
-            List<MachineDto> dtoList= machineDAOImpl.getAllCustomer();
+            List<MachineDto> dtoList= machineDAOImpl.getAll();
 
             for (MachineDto dto : dtoList){
                 obList.add(
@@ -110,7 +110,7 @@ public class MachineFormController {
                 );
             }
             tblMachine.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
         
@@ -127,13 +127,13 @@ public class MachineFormController {
     private void genarateNextMachineId() {
         try {
             String previousCustomerID = lblMachineId.getText();
-            String machineIdID = machineDAOImpl.genarateNextMachineId();
+            String machineIdID = machineDAOImpl.generateNextID();
             lblMachineId.setText(machineIdID);
             clearFields();
             if (btnClearPressed){
                 lblMachineId.setText(previousCustomerID);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
@@ -160,7 +160,7 @@ public class MachineFormController {
             ButtonType pressedButton = buttonType.get();
             if (pressedButton.equals(ButtonType.YES)) {
                 try {
-                    boolean isDeleted = machineDAOImpl.machineDelete(id);
+                    boolean isDeleted = machineDAOImpl.delete(id);
                     if (isDeleted) {
                         new Alert(Alert.AlertType.INFORMATION, "Machine " + id + " Deleted").show();
                         loaddAllMachine();
@@ -168,7 +168,7 @@ public class MachineFormController {
                         clearFields();
 
                     }
-                } catch (SQLException e) {
+                } catch (SQLException | ClassNotFoundException e) {
                     new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
                 }
             }
@@ -188,7 +188,7 @@ public class MachineFormController {
         boolean isVlidate = validateMachine(machineDto);
         if (isVlidate) {
             try {
-                boolean isSaved = machineDAOImpl.machineSave(machineDto);
+                boolean isSaved = machineDAOImpl.save(machineDto);
                 if (isSaved) {
                     clearFields();
                     genarateNextMachineId();
@@ -197,7 +197,7 @@ public class MachineFormController {
                 } else {
                     new Alert(Alert.AlertType.ERROR, "Error").show();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
         }
@@ -230,13 +230,13 @@ public class MachineFormController {
         boolean isVlidate = validateMachine(machineDto);
         if (isVlidate) {
             try {
-                boolean isUpdated = machineDAOImpl.updateCustomer(machineDto);
+                boolean isUpdated = machineDAOImpl.update(machineDto);
                 if (isUpdated) {
                     new Alert(Alert.AlertType.INFORMATION, "Machine Updated Successfully").show();
                     genarateNextMachineId();
                     loaddAllMachine();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
         }
@@ -247,7 +247,7 @@ public class MachineFormController {
     void txtCustomerIdSearch(ActionEvent event) {
         String id =txtSearch.getText();
         try {
-            MachineDto machineDto = machineDAOImpl.searchMachine(id);
+            MachineDto machineDto = machineDAOImpl.search(id);
             if (machineDto != null){
                 lblMachineId.setText(machineDto.getMachineId());
                 cmbTailorId.setValue(machineDto.getTailorId());
@@ -257,7 +257,7 @@ public class MachineFormController {
                 new Alert(Alert.AlertType.ERROR,"Invalid Machine ID").show();
                 txtSearch.setText("");
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }

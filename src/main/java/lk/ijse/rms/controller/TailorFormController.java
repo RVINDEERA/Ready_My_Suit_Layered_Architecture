@@ -108,7 +108,7 @@ public class TailorFormController {
         ObservableList<TailorTm>observableList = FXCollections.observableArrayList();
         try {
             observableList.clear();
-            List<TailorDto> dtoList= tailorDAOImpl.getAllTailor();
+            List<TailorDto> dtoList= tailorDAOImpl.getAll();
             for (TailorDto dto : dtoList){
                 observableList.add(
                         new TailorTm(
@@ -123,7 +123,7 @@ public class TailorFormController {
                 );
             }
             tblTailor.setItems(observableList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
 
         }
@@ -143,13 +143,13 @@ public class TailorFormController {
     private void genarateNextCustomerId() {
         try {
             String previousTailorID = lblTailorId.getText();
-            String tailorID = tailorDAOImpl.genarateNextTailorId();
+            String tailorID = tailorDAOImpl.generateNextID();
             lblTailorId.setText(tailorID);
             clearFields();
             if (btnClearPressed){
                 lblTailorId.setText(previousTailorID);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
@@ -180,14 +180,14 @@ public class TailorFormController {
             ButtonType pressedButton = buttonType.get();
             if (pressedButton.equals(ButtonType.YES)) {
                 try {
-                    boolean isDeleted = tailorDAOImpl.deleteTailor(tailorId);
+                    boolean isDeleted = tailorDAOImpl.delete(tailorId);
                     if (isDeleted) {
                         clearFields();
                         loadAllTailor();
                         txtTailorId2.clear();
                         new Alert(Alert.AlertType.INFORMATION, "Tailor " + tailorId + "deleted Successful").show();
                     }
-                } catch (SQLException e) {
+                } catch (SQLException | ClassNotFoundException e) {
                     new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
 
                 }
@@ -213,7 +213,7 @@ public class TailorFormController {
         boolean isValid = validateTailor(tailorDto);
         if (isValid) {
             try {
-                boolean isSaved = tailorDAOImpl.saveTailor(tailorDto);
+                boolean isSaved = tailorDAOImpl.save(tailorDto);
                 if (isSaved) {
                     loadAllTailor();
                     genarateNextCustomerId();
@@ -222,7 +222,7 @@ public class TailorFormController {
                 }else{
                     new Alert(Alert.AlertType.ERROR,"Error").show();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
         }
@@ -276,14 +276,14 @@ public class TailorFormController {
         boolean isValid = validateTailor(tailorDto);
         if (isValid) {
             try {
-                boolean isUpdated = tailorDAOImpl.updateTailor(tailorDto);
+                boolean isUpdated = tailorDAOImpl.update(tailorDto);
                 if (isUpdated) {
                     clearFields();
                     genarateNextCustomerId();
                     txtTailorId2.clear();
                     new Alert(Alert.AlertType.INFORMATION, "Tailor Updated Successfully ").show();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
         }
@@ -295,7 +295,7 @@ public class TailorFormController {
         String tailorId = txtTailorId2.getText();
 
         try {
-            TailorDto tailorDto= tailorDAOImpl.searchTailor(tailorId);
+            TailorDto tailorDto= tailorDAOImpl.search(tailorId);
             if (tailorDto != null){
                 lblTailorId.setText(tailorDto.getTailorId());
                 txtFirstName.setText(tailorDto.getFirstName());
@@ -309,7 +309,7 @@ public class TailorFormController {
                 txtTailorId2.setText("");
                 new Alert(Alert.AlertType.ERROR,"Invalid Tailor Id!").show();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
 
         }

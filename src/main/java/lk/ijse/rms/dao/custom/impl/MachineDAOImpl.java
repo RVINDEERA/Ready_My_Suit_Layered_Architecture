@@ -1,5 +1,7 @@
 package lk.ijse.rms.dao.custom.impl;
 
+import lk.ijse.rms.dao.SQLUtil;
+import lk.ijse.rms.dao.custom.MachineDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.MachineDto;
 
@@ -10,27 +12,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MachineDAOImpl {
+public class MachineDAOImpl implements MachineDAO {
 
-    public boolean machineSave(MachineDto machineDto) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("INSERT INTO machine VALUES (?,?,?,?,?)");
-        pstm.setString(1,machineDto.getMachineId());
-        pstm.setString(2,machineDto.getTailorId());
-        pstm.setString(3,machineDto.getType());
-        pstm.setString(4,machineDto.getDate());
-        pstm.setString(5,machineDto.getAvail());
+    public boolean save(MachineDto machineDto) throws SQLException, ClassNotFoundException {
 
-        return pstm.executeUpdate() > 0;
+        return SQLUtil.execute("INSERT INTO machine VALUES (?,?,?,?,?)",machineDto.getMachineId(),machineDto.getTailorId(),machineDto.getType(),machineDto.getDate(),machineDto.getAvail());
     }
 
-    public String genarateNextMachineId() throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-
-        String sql = "SELECT machineId FROM machine ORDER BY machineId DESC LIMIT 1";
-        PreparedStatement ptsm = connection.prepareStatement(sql);
-
-        ResultSet resultSet = ptsm.executeQuery();
+    public String generateNextID() throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = SQLUtil.execute("SELECT machineId FROM machine ORDER BY machineId DESC LIMIT 1");
         if (resultSet.next()){
             return splitMachineID(resultSet.getString(1));
         }
@@ -50,36 +40,42 @@ public class MachineDAOImpl {
     }
 
 
-    public boolean machineDelete(String id) throws SQLException {
-        Connection connection=DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("DELETE FROM machine WHERE machineId = ?");
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+//        Connection connection=DbConnection.getInstance().getConnection();
+//        PreparedStatement pstm = connection.prepareStatement("DELETE FROM machine WHERE machineId = ?");
+//
+//        pstm.setString(1,id);
+//        return pstm.executeUpdate() > 0;
 
-        pstm.setString(1,id);
-        return pstm.executeUpdate() > 0;
-
-    }
-
-    public boolean updateCustomer(MachineDto machineDto) throws SQLException {
-        Connection connection =DbConnection.getInstance().getConnection();;
-        PreparedStatement pstm = connection.prepareStatement("UPDATE machine SET tailorId=?,type=?,date=?,avail=? WHERE machineId=?");
-
-        pstm.setString(1,machineDto.getTailorId());
-        pstm.setString(2,machineDto.getType());
-        pstm.setString(3,machineDto.getDate());
-        pstm.setString(4,machineDto.getAvail());
-        pstm.setString(5,machineDto.getMachineId());
-
-        return pstm.executeUpdate() > 0;
+        return SQLUtil.execute("DELETE FROM machine WHERE machineId = ?",id);
 
     }
 
-    public MachineDto searchMachine(String id) throws SQLException {
-        Connection connection=DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM machine WHERE machineId = ?");
+    public boolean update(MachineDto machineDto) throws SQLException, ClassNotFoundException {
+//        Connection connection =DbConnection.getInstance().getConnection();;
+//        PreparedStatement pstm = connection.prepareStatement("UPDATE machine SET tailorId=?,type=?,date=?,avail=? WHERE machineId=?");
+//
+//        pstm.setString(1,machineDto.getTailorId());
+//        pstm.setString(2,machineDto.getType());
+//        pstm.setString(3,machineDto.getDate());
+//        pstm.setString(4,machineDto.getAvail());
+//        pstm.setString(5,machineDto.getMachineId());
+//
+//        return pstm.executeUpdate() > 0;
 
-        pstm.setString(1,id);
+        return SQLUtil.execute("UPDATE machine SET tailorId=?,type=?,date=?,avail=? WHERE machineId=?",machineDto.getTailorId(),machineDto.getType(),machineDto.getDate(),machineDto.getAvail(),machineDto.getMachineId());
 
-        ResultSet resultSet = pstm.executeQuery();
+    }
+
+    public MachineDto search(String id) throws SQLException, ClassNotFoundException {
+//        Connection connection=DbConnection.getInstance().getConnection();
+//        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM machine WHERE machineId = ?");
+//
+//        pstm.setString(1,id);
+//
+//        ResultSet resultSet = pstm.executeQuery();
+
+        ResultSet resultSet = SQLUtil.execute("SELECT * FROM machine WHERE machineId = ?",id);
 
         MachineDto machineDto =null;
         if (resultSet.next()){
@@ -94,11 +90,13 @@ public class MachineDAOImpl {
         return machineDto;
     }
 
-    public List<MachineDto> getAllCustomer() throws SQLException {
-        Connection connection=DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM machine");
+    public List<MachineDto> getAll() throws SQLException, ClassNotFoundException {
+//        Connection connection=DbConnection.getInstance().getConnection();
+//        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM machine");
+//
+//        ResultSet resultSet = pstm.executeQuery();
 
-        ResultSet resultSet = pstm.executeQuery();
+        ResultSet resultSet = SQLUtil.execute("SELECT * FROM machine");
 
         ArrayList<MachineDto> dtoList = new ArrayList<>();
 

@@ -94,13 +94,13 @@ public class CoatMeasurementFormController {
     private void generateNextCoatId() {
         try {
             String previousShirtID = lblMeasurementId.getText();
-            String shirtmId = coatMeasurementModel.generateNextCoatId();
+            String shirtmId = coatMeasurementModel.generateNextID();
             lblMeasurementId.setText(shirtmId);
             clearFields();
             if (btnClearPressed){
                 lblMeasurementId.setText(previousShirtID);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
@@ -151,14 +151,14 @@ public class CoatMeasurementFormController {
         CoatMeasurementsDto coatMeasurementsDto = new CoatMeasurementsDto(measurementId,customerId,date,length,chest,shoulder,sleeveLength,collar,waist,neck,elbow);
 
         try {
-            boolean isSaved = coatMeasurementModel.coatMeasurementSave(coatMeasurementsDto);
+            boolean isSaved = coatMeasurementModel.save(coatMeasurementsDto);
             if (isSaved){
                 new Alert(Alert.AlertType.INFORMATION,"Shirt Measurements Saved Successfully").show();
                 clearFields();
                 generateNextCoatId();
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
 
@@ -181,12 +181,12 @@ public class CoatMeasurementFormController {
 
         CoatMeasurementsDto coatMeasurementsDto = new CoatMeasurementsDto(measurementId,customerId,date,length,chest,shoulder,sleeveLength,collar,waist,neck,elbow);
         try {
-            boolean isUpdated = coatMeasurementModel.updateCoat(coatMeasurementsDto);
+            boolean isUpdated = coatMeasurementModel.update(coatMeasurementsDto);
             if (isUpdated) {
                 new Alert(Alert.AlertType.INFORMATION, "Measurements Updated Successfully").show();
                 generateNextCoatId();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
@@ -201,7 +201,7 @@ public class CoatMeasurementFormController {
                 lblCustomerName.setText(customerDto.getFirstName());
                 String coatM =lblCustomerID.getText();
                 try {
-                    CoatMeasurementsDto coatMeasurementsDto =coatMeasurementModel.searchMeasurements(coatM);
+                    CoatMeasurementsDto coatMeasurementsDto =coatMeasurementModel.search(coatM);
                     if (coatMeasurementsDto !=null){
                         lblMeasurementId.setText(coatMeasurementsDto.getCmId());
                         lblDate.setText(coatMeasurementsDto.getDate());

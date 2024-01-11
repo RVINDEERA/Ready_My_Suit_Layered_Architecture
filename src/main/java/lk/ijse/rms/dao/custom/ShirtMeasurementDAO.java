@@ -6,10 +6,10 @@ import lk.ijse.rms.dto.ShirtDto;
 
 import java.sql.SQLException;
 
-public interface ShirtMeasurementDAO {
-    boolean shirtMeasurementSave(ShirtDto shirtDto) throws SQLException ;
-    String generateNextShirtId() throws SQLException ;
+public interface ShirtMeasurementDAO extends CrudDAO<ShirtDto> {
+   // boolean shirtMeasurementSave(ShirtDto shirtDto) throws SQLException, ClassNotFoundException;
+    //String generateNextShirtId() throws SQLException, ClassNotFoundException;
     String splitShirtID(String currentShirtID);
-    ShirtDto searchMeasurements(String shirtM) throws SQLException ;
-    boolean updateShirt(ShirtDto shirtDto) throws SQLException ;
+   // ShirtDto searchMeasurements(String shirtM) throws SQLException, ClassNotFoundException;
+    //boolean updateShirt(ShirtDto shirtDto) throws SQLException, ClassNotFoundException;
 }

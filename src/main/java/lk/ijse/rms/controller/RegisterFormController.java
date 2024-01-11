@@ -60,13 +60,13 @@ public class RegisterFormController {
                     new Alert(Alert.AlertType.ERROR, "Email or Password already taken try another ").show();
                     return;
                 }
-                boolean isRegisterd = registerDAOImpl.userRegister(userDto);
+                boolean isRegisterd = registerDAOImpl.save(userDto);
 
                 if (isRegisterd) {
                     new Alert(Alert.AlertType.INFORMATION, "New Account Created ").showAndWait();navigateToMain();
                     navigateToMain();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
                 throw new RuntimeException(e);
 

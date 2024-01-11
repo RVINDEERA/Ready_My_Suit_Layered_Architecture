@@ -50,7 +50,7 @@ public class PlaceOrderFormModel {
                 connection.rollback();
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             if (connection !=null)connection.rollback();
             e.printStackTrace();
         }finally {

@@ -1,5 +1,6 @@
 package lk.ijse.rms.dao.custom.impl;
 
+import lk.ijse.rms.dao.SQLUtil;
 import lk.ijse.rms.dao.custom.FabricDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.FabricDto;
@@ -12,13 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FabricDAOImpl implements FabricDAO {
-    public String genarateNextFabricId() throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-
-        String sql = "SELECT fabricId FROM fabric ORDER BY fabricId DESC LIMIT 1";
-        PreparedStatement ptsm = connection.prepareStatement(sql);
-
-        ResultSet resultSet = ptsm.executeQuery();
+    public String generateNextID() throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = SQLUtil.execute("SELECT fabricId FROM fabric ORDER BY fabricId DESC LIMIT 1");
         if (resultSet.next()){
             return splitFabricID(resultSet.getString(1));
         }
@@ -38,49 +34,21 @@ public class FabricDAOImpl implements FabricDAO {
 
     }
 
-    public boolean fabricSave(FabricDto fabricDto) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement pstm =connection.prepareStatement("INSERT INTO fabric VALUES (?,?,?,?,?)");
-
-        pstm.setString(1,fabricDto.getFabricId());
-        pstm.setString(2,fabricDto.getName());
-        pstm.setString(3,fabricDto.getRollqty());
-        pstm.setString(4,fabricDto.getType());
-        pstm.setString(5,fabricDto.getColour());
-
-
-        return pstm.executeUpdate() > 0;
+    public boolean save(FabricDto fabricDto) throws SQLException, ClassNotFoundException {
+        return SQLUtil.execute("INSERT INTO fabric VALUES (?,?,?,?,?)",fabricDto.getFabricId(),fabricDto.getName(),fabricDto.getRollqty(),fabricDto.getType(),fabricDto.getColour());
     }
 
-    public boolean fabricDelete(String id) throws SQLException {
-        Connection connection=DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("DELETE FROM fabric WHERE fabricId = ?");
-
-        pstm.setString(1,id);
-        return pstm.executeUpdate() > 0;
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return SQLUtil.execute("DELETE FROM fabric WHERE fabricId = ?",id);
     }
 
-    public boolean updateFabric(FabricDto fabricDto) throws SQLException {
-        Connection connection =DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("UPDATE fabric SET name=?,rollQty=?,type=?,colour=? WHERE fabricId=?");
-
-        pstm.setString(1,fabricDto.getName());
-        pstm.setString(2,fabricDto.getRollqty());
-        pstm.setString(3,fabricDto.getType());
-        pstm.setString(4,fabricDto.getColour());
-        pstm.setString(5,fabricDto.getFabricId());
-
-        return pstm.executeUpdate() > 0;
+    public boolean update(FabricDto fabricDto) throws SQLException, ClassNotFoundException {
+        return SQLUtil.execute("UPDATE fabric SET name=?,rollQty=?,type=?,colour=? WHERE fabricId=?",fabricDto.getName(),fabricDto.getRollqty(),fabricDto.getType(),fabricDto.getColour(),fabricDto.getFabricId());
 
     }
 
-    public FabricDto searchFabric(String id) throws SQLException {
-        Connection connection=DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM fabric WHERE fabricId = ?");
-
-        pstm.setString(1,id);
-
-        ResultSet resultSet = pstm.executeQuery();
+    public FabricDto search(String id) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = SQLUtil.execute("SELECT * FROM fabric WHERE fabricId = ?",id);
 
         FabricDto fabricDto =null;
         if (resultSet.next()){
@@ -96,12 +64,8 @@ public class FabricDAOImpl implements FabricDAO {
 
     }
 
-    public List<FabricDto> getAllCustomer() throws SQLException {
-        Connection connection=DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM fabric");
-
-        ResultSet resultSet = pstm.executeQuery();
-
+    public List<FabricDto> getAll() throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = SQLUtil.execute("SELECT * FROM fabric");
         ArrayList<FabricDto> dtoList = new ArrayList<>();
 
         while (resultSet.next()){

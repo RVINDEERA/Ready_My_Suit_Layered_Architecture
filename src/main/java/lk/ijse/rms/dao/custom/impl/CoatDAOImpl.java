@@ -1,5 +1,6 @@
 package lk.ijse.rms.dao.custom.impl;
 
+import lk.ijse.rms.dao.SQLUtil;
 import lk.ijse.rms.dao.custom.CoatDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.CoatDto;
@@ -13,36 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CoatDAOImpl implements CoatDAO {
-    public boolean coatDelete(String id) throws SQLException {
-        Connection connection=DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("DELETE FROM coat WHERE coatId = ?");
-
-        pstm.setString(1,id);
-        return pstm.executeUpdate() > 0;
-
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return SQLUtil.execute("DELETE FROM coat WHERE coatId = ?",id);
     }
 
-    public boolean saveCoat(CoatDto coatDto) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("INSERT INTO coat VALUES (?,?,?,?,?,?,?)");
-        pstm.setString(1,coatDto.getCoatId());
-        pstm.setString(2,coatDto.getType());
-        pstm.setString(3,coatDto.getColor());
-        pstm.setString(4,coatDto.getAvailability());
-        pstm.setString(5,coatDto.getDate());
-        pstm.setString(6,coatDto.getPrice());
-        pstm.setString(7,coatDto.getSize());
-
-        return pstm.executeUpdate() > 0;
+    public boolean save(CoatDto coatDto) throws SQLException, ClassNotFoundException {
+        return SQLUtil.execute("INSERT INTO coat VALUES (?,?,?,?,?,?,?)",coatDto.getCoatId(),coatDto.getType(),coatDto.getColor(),coatDto.getAvailability(),coatDto.getDate(),coatDto.getPrice(),coatDto.getSize());
     }
 
-    public String genarateNextMachineId() throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-
-        String sql = "SELECT coatId FROM coat ORDER BY coatId DESC LIMIT 1";
-        PreparedStatement ptsm = connection.prepareStatement(sql);
-
-        ResultSet resultSet = ptsm.executeQuery();
+    public String generateNextID() throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = SQLUtil.execute( "SELECT coatId FROM coat ORDER BY coatId DESC LIMIT 1");
         if (resultSet.next()){
             return splitCustomerID(resultSet.getString(1));
         }
@@ -61,22 +42,11 @@ public class CoatDAOImpl implements CoatDAO {
         }
     }
 
-    public boolean updateCoat(CoatDto coatDto) throws SQLException {
-        Connection connection =DbConnection.getInstance().getConnection();;
-        PreparedStatement pstm = connection.prepareStatement("UPDATE coat SET type=?,color=?,avail=?,mfgDate=?,unitPrice=?,size=? WHERE coatId=?");
-
-        pstm.setString(1,coatDto.getType());
-        pstm.setString(2,coatDto.getColor());
-        pstm.setString(3,coatDto.getAvailability());
-        pstm.setString(4,coatDto.getDate());
-        pstm.setString(5,coatDto.getPrice());
-        pstm.setString(6,coatDto.getSize());
-        pstm.setString(7,coatDto.getCoatId());
-
-        return pstm.executeUpdate() > 0;
+    public boolean update(CoatDto coatDto) throws SQLException, ClassNotFoundException {
+        return SQLUtil.execute("UPDATE coat SET type=?,color=?,avail=?,mfgDate=?,unitPrice=?,size=? WHERE coatId=?",coatDto.getType(),coatDto.getColor(),coatDto.getAvailability(),coatDto.getDate(),coatDto.getPrice(),coatDto.getSize(),coatDto.getCoatId());
     }
 
-    public boolean updateCoat(List<CartTm>cartTmList) throws SQLException {
+    public boolean updateCoat(List<CartTm>cartTmList) throws SQLException, ClassNotFoundException {
         for(CartTm tm : cartTmList) {
             System.out.println("Coat: " + tm);
             if(!updateAvailability(tm.getCoatId())) {
@@ -86,27 +56,23 @@ public class CoatDAOImpl implements CoatDAO {
         return true;
     }
 
-    public boolean updateAvailability(String coatId) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-
-        String sql = "UPDATE coat SET avail = 'NO' WHERE coatId = ?";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-
-        pstm.setString(1, coatId);
-
-
-
-        return pstm.executeUpdate() > 0; //false
+    public boolean updateAvailability(String coatId) throws SQLException, ClassNotFoundException {
+//        Connection connection = DbConnection.getInstance().getConnection();
+//
+//        String sql = "UPDATE coat SET avail = 'NO' WHERE coatId = ?";
+//        PreparedStatement pstm = connection.prepareStatement(sql);
+//
+//        pstm.setString(1, coatId);
+//
+//
+//
+//        return pstm.executeUpdate() > 0; //false
+        return SQLUtil.execute("UPDATE coat SET avail = 'NO' WHERE coatId = ?",coatId);
     }
 
 
-    public CoatDto searchCoat(String id) throws SQLException {
-        Connection connection=DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM coat WHERE coatId = ?");
-
-        pstm.setString(1, id);
-
-        ResultSet resultSet = pstm.executeQuery();
+    public CoatDto search(String id) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = SQLUtil.execute("SELECT * FROM coat WHERE coatId = ?",id);
 
         CoatDto coatDto =null;
         if (resultSet.next()){
@@ -123,11 +89,11 @@ public class CoatDAOImpl implements CoatDAO {
         return coatDto;
     }
 
-    public List<CoatDto> getAllCoat() throws SQLException {
-        Connection connection=DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM coat");
+    public List<CoatDto> getAll() throws SQLException, ClassNotFoundException {
+//        Connection connection=DbConnection.getInstance().getConnection();
+//        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM coat");
 
-        ResultSet resultSet = pstm.executeQuery();
+        ResultSet resultSet = SQLUtil.execute("SELECT * FROM coat");
 
         ArrayList<CoatDto> dtoList = new ArrayList<>();
 
@@ -147,15 +113,17 @@ public class CoatDAOImpl implements CoatDAO {
         return dtoList;
     }
 
-    public List<CoatDto> loadAllItems() throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
+    public List<CoatDto> loadAllItems() throws SQLException, ClassNotFoundException {
+//        Connection connection = DbConnection.getInstance().getConnection();
+//
+//        String sql = "SELECT * FROM coat WHERE avail = 'YES'";
+//        PreparedStatement pstm = connection.prepareStatement(sql);
 
-        String sql = "SELECT * FROM coat WHERE avail = 'YES'";
-        PreparedStatement pstm = connection.prepareStatement(sql);
 
+        ResultSet resultSet = SQLUtil.execute("SELECT * FROM coat WHERE avail = 'YES'");
         List<CoatDto> coatList = new ArrayList<>();
 
-        ResultSet resultSet = pstm.executeQuery();
+       // ResultSet resultSet = pstm.executeQuery();
         while (resultSet.next()) {
             coatList.add(new CoatDto(
                     resultSet.getString(1),

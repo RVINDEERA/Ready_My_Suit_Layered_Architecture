@@ -100,13 +100,13 @@ public class ShirtMeasurementFormController {
     private void generateNextShirtId() {
         try {
             String previousShirtID = lblMeasurementId.getText();
-            String shirtmId = shirtMeasurementDAOImpl.generateNextShirtId();
+            String shirtmId = shirtMeasurementDAOImpl.generateNextID();
             lblMeasurementId.setText(shirtmId);
             clearFields();
             if (btnClearPressed){
                 lblMeasurementId.setText(previousShirtID);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
@@ -147,7 +147,7 @@ public class ShirtMeasurementFormController {
       //  boolean isVlidate = validateMeasurement(shirtDto);
      //   if (isVlidate) {
             try {
-                boolean isSaved = shirtMeasurementDAOImpl.shirtMeasurementSave(shirtDto);
+                boolean isSaved = shirtMeasurementDAOImpl.save(shirtDto);
                 if (isSaved){
                     generateNextShirtId();
                     clearFields();
@@ -215,12 +215,12 @@ public class ShirtMeasurementFormController {
 
         ShirtDto shirtDto = new ShirtDto(measurementId,customerId,date,length,chest,shoulder,sleeveLength,collar, cuff, waist);
         try {
-            boolean isUpdated = shirtMeasurementDAOImpl.updateShirt(shirtDto);
+            boolean isUpdated = shirtMeasurementDAOImpl.update(shirtDto);
             if (isUpdated) {
                 new Alert(Alert.AlertType.INFORMATION, "Measurements Updated Successfully").show();
                 generateNextShirtId();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
@@ -236,7 +236,7 @@ public class ShirtMeasurementFormController {
 
                 String shirtM = lblCustomerId.getText();
                 try {
-                    ShirtDto shirtDto = shirtMeasurementDAOImpl.searchMeasurements(shirtM);
+                    ShirtDto shirtDto = shirtMeasurementDAOImpl.search(shirtM);
                     if (shirtDto !=null){
                         lblMeasurementId.setText(shirtDto.getSmId());
                         lblDate.setText(shirtDto.getDate());
