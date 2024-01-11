@@ -14,10 +14,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.rms.dao.custom.impl.CoatDAOImpl;
-import lk.ijse.rms.dao.custom.impl.CustomerDAOImpl;
+import lk.ijse.rms.bo.BOFactory;
+import lk.ijse.rms.bo.custom.CoatBo;
+import lk.ijse.rms.bo.custom.CustomerBo;
+import lk.ijse.rms.bo.custom.RentBo;
+import lk.ijse.rms.bo.custom.RentCoatBo;
 import lk.ijse.rms.dao.custom.impl.RentBondDAOImpl;
-import lk.ijse.rms.dao.custom.impl.RentDAOImpl;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.*;
 import lk.ijse.rms.dto.tm.CartTm;
@@ -121,17 +123,15 @@ public class RentCoatFormController {
     @FXML
     private DatePicker txtReturnDate;
 
-    private CustomerDAOImpl customerModel = new CustomerDAOImpl();
-    private CoatDAOImpl coatDAOImpl = new CoatDAOImpl();
-
-    private RentDAOImpl rentDAOImpl =new RentDAOImpl();
-    @FXML
-    private JFXComboBox<String> cmbRentalBond;
 
     private RentBondDAOImpl rentBondDAOImpl = new RentBondDAOImpl();
+    RentCoatBo rentCoatDAOImpl = (RentCoatBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.RENT_COAT);
+    CustomerBo customerBo = (CustomerBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.CUSTOMER);
+    CoatBo coatDAOImpl = (CoatBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.COAT);
+    RentBo rentDAOImpl = (RentBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.RENT);
 
-    private RentCoatDAOImpl rentCoatDAOImpl =new RentCoatDAOImpl();
-
+    @FXML
+    private JFXComboBox<String> cmbRentalBond;
     @FXML
     private Label lblColor;
 
@@ -376,7 +376,7 @@ public class RentCoatFormController {
     void txtPhoneNumberOnAction(ActionEvent event) {
         String id = txtPhoneNumber.getText();
         try {
-            CustomerDto customerDto =customerModel.searchCustomer(id);
+            CustomerDto customerDto = customerBo.searchCustomer(id);
             if (customerDto != null) {
                 lblCusName.setText(customerDto.getFirstName());
                 // lblCusName.setText(customerDto.getLastName());

@@ -22,17 +22,7 @@ public class OrderItemDAOImpl implements OrderItemDAO {
     }
 
     public boolean saveOrderItem(String orderId, OrderCartTm tm) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        String sql = "INSERT INTO orderItem VALUES(?, ?, ?, ?)";
-//        PreparedStatement pstm = connection.prepareStatement(sql);
-//
-//        pstm.setString(1,orderId);
-//        pstm.setString(2,tm.getItemId());
-//        pstm.setInt(3,tm.getQty());
-//        pstm.setString(4,tm.getNote());
-//
-//        return pstm.executeUpdate() > 0;
+
 
         return SQLUtil.execute("INSERT INTO orderItem VALUES(?, ?, ?, ?)",orderId,tm.getItemId(),tm.getQty(),tm.getNote());
     }

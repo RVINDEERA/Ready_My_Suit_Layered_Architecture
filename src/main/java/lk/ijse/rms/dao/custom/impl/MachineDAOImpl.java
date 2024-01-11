@@ -4,6 +4,7 @@ import lk.ijse.rms.dao.SQLUtil;
 import lk.ijse.rms.dao.custom.MachineDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.MachineDto;
+import lk.ijse.rms.entity.Machine;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,9 +15,9 @@ import java.util.List;
 
 public class MachineDAOImpl implements MachineDAO {
 
-    public boolean save(MachineDto machineDto) throws SQLException, ClassNotFoundException {
+    public boolean save(Machine entity) throws SQLException, ClassNotFoundException {
 
-        return SQLUtil.execute("INSERT INTO machine VALUES (?,?,?,?,?)",machineDto.getMachineId(),machineDto.getTailorId(),machineDto.getType(),machineDto.getDate(),machineDto.getAvail());
+        return SQLUtil.execute("INSERT INTO machine VALUES (?,?,?,?,?)",entity.getMachineId(),entity.getTailorId(),entity.getType(),entity.getDate(),entity.getAvail());
     }
 
     public String generateNextID() throws SQLException, ClassNotFoundException {
@@ -51,7 +52,7 @@ public class MachineDAOImpl implements MachineDAO {
 
     }
 
-    public boolean update(MachineDto machineDto) throws SQLException, ClassNotFoundException {
+    public boolean update(Machine entity) throws SQLException, ClassNotFoundException {
 //        Connection connection =DbConnection.getInstance().getConnection();;
 //        PreparedStatement pstm = connection.prepareStatement("UPDATE machine SET tailorId=?,type=?,date=?,avail=? WHERE machineId=?");
 //
@@ -63,11 +64,11 @@ public class MachineDAOImpl implements MachineDAO {
 //
 //        return pstm.executeUpdate() > 0;
 
-        return SQLUtil.execute("UPDATE machine SET tailorId=?,type=?,date=?,avail=? WHERE machineId=?",machineDto.getTailorId(),machineDto.getType(),machineDto.getDate(),machineDto.getAvail(),machineDto.getMachineId());
+        return SQLUtil.execute("UPDATE machine SET tailorId=?,type=?,date=?,avail=? WHERE machineId=?",entity.getTailorId(),entity.getType(),entity.getDate(),entity.getAvail(),entity.getMachineId());
 
     }
 
-    public MachineDto search(String id) throws SQLException, ClassNotFoundException {
+    public Machine search(String id) throws SQLException, ClassNotFoundException {
 //        Connection connection=DbConnection.getInstance().getConnection();
 //        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM machine WHERE machineId = ?");
 //
@@ -77,9 +78,9 @@ public class MachineDAOImpl implements MachineDAO {
 
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM machine WHERE machineId = ?",id);
 
-        MachineDto machineDto =null;
+        Machine machineDto =null;
         if (resultSet.next()){
-            machineDto =new MachineDto(
+            machineDto =new Machine(
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
@@ -90,7 +91,7 @@ public class MachineDAOImpl implements MachineDAO {
         return machineDto;
     }
 
-    public List<MachineDto> getAll() throws SQLException, ClassNotFoundException {
+    public List<Machine> getAll() throws SQLException, ClassNotFoundException {
 //        Connection connection=DbConnection.getInstance().getConnection();
 //        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM machine");
 //
@@ -98,11 +99,11 @@ public class MachineDAOImpl implements MachineDAO {
 
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM machine");
 
-        ArrayList<MachineDto> dtoList = new ArrayList<>();
+        ArrayList<Machine> dtoList = new ArrayList<>();
 
         while (resultSet.next()){
             dtoList.add(
-                    new MachineDto(
+                    new Machine(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3),

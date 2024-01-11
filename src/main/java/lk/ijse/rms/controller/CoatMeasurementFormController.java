@@ -11,10 +11,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.rms.bo.BOFactory;
+import lk.ijse.rms.bo.custom.CoatMeasurementBo;
+import lk.ijse.rms.bo.custom.CustomerBo;
 import lk.ijse.rms.dto.CoatMeasurementsDto;
 import lk.ijse.rms.dto.CustomerDto;
-import lk.ijse.rms.dao.custom.impl.CoatMeasurementDAOImpl;
-import lk.ijse.rms.dao.custom.impl.CustomerDAOImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -79,9 +80,10 @@ public class CoatMeasurementFormController {
     @FXML
     private TextField txtlength;
 
-    CoatMeasurementDAOImpl coatMeasurementModel = new CoatMeasurementDAOImpl();
+    CoatMeasurementBo coatMeasurementBo = (CoatMeasurementBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.COATMEASUREMENT);
 
-    CustomerDAOImpl customerModel = new CustomerDAOImpl();
+    CustomerBo customerBo = (CustomerBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.CUSTOMER);
+
     public void initialize(){
         generateNextCoatId();
         setDate();
@@ -94,7 +96,7 @@ public class CoatMeasurementFormController {
     private void generateNextCoatId() {
         try {
             String previousShirtID = lblMeasurementId.getText();
-            String shirtmId = coatMeasurementModel.generateNextID();
+            String shirtmId = coatMeasurementBo.generateNextID();
             lblMeasurementId.setText(shirtmId);
             clearFields();
             if (btnClearPressed){
@@ -151,7 +153,7 @@ public class CoatMeasurementFormController {
         CoatMeasurementsDto coatMeasurementsDto = new CoatMeasurementsDto(measurementId,customerId,date,length,chest,shoulder,sleeveLength,collar,waist,neck,elbow);
 
         try {
-            boolean isSaved = coatMeasurementModel.save(coatMeasurementsDto);
+            boolean isSaved = coatMeasurementBo.save(coatMeasurementsDto);
             if (isSaved){
                 new Alert(Alert.AlertType.INFORMATION,"Shirt Measurements Saved Successfully").show();
                 clearFields();
@@ -181,7 +183,7 @@ public class CoatMeasurementFormController {
 
         CoatMeasurementsDto coatMeasurementsDto = new CoatMeasurementsDto(measurementId,customerId,date,length,chest,shoulder,sleeveLength,collar,waist,neck,elbow);
         try {
-            boolean isUpdated = coatMeasurementModel.update(coatMeasurementsDto);
+            boolean isUpdated = coatMeasurementBo.update(coatMeasurementsDto);
             if (isUpdated) {
                 new Alert(Alert.AlertType.INFORMATION, "Measurements Updated Successfully").show();
                 generateNextCoatId();
@@ -195,13 +197,13 @@ public class CoatMeasurementFormController {
     void txtCustomerSearch(ActionEvent event) {
         String phone = txtSearch.getText();
         try {
-            CustomerDto customerDto =customerModel.searchCustomer(phone);
+            CustomerDto customerDto = customerBo.searchCustomer(phone);
             if (customerDto != null) {
                 lblCustomerID.setText(customerDto.getCustomerId());
                 lblCustomerName.setText(customerDto.getFirstName());
                 String coatM =lblCustomerID.getText();
                 try {
-                    CoatMeasurementsDto coatMeasurementsDto =coatMeasurementModel.search(coatM);
+                    CoatMeasurementsDto coatMeasurementsDto = coatMeasurementBo.search(coatM);
                     if (coatMeasurementsDto !=null){
                         lblMeasurementId.setText(coatMeasurementsDto.getCmId());
                         lblDate.setText(coatMeasurementsDto.getDate());

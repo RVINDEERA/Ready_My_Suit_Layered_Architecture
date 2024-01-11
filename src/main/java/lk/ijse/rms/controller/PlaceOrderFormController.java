@@ -12,6 +12,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.rms.bo.BOFactory;
+import lk.ijse.rms.bo.custom.*;
 import lk.ijse.rms.dao.custom.impl.*;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.*;
@@ -121,14 +123,14 @@ public class PlaceOrderFormController {
     @FXML
     private TextField txtQty;
 
-    private CustomerDAOImpl customerModel = new CustomerDAOImpl();
-    private PlaceOrderFormModel placeOrderFormModel = new PlaceOrderFormModel();
+    CustomerBo customerModel = (CustomerBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.CUSTOMER);
+    PlaceOrderBo placeOrderDAOImpl = (PlaceOrderBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.PLACE_ORDER);
     OrderDAOImpl orderDAOImpl =new OrderDAOImpl();
-    private ItemDAOImpl itemDAOImpl = new ItemDAOImpl();
-    private ShirtMeasurementDAOImpl shirtMeasurementDAOImpl = new ShirtMeasurementDAOImpl();
-    private TrouserDAOImpl trouserDAOImpl = new TrouserDAOImpl();
-    private CoatMeasurementDAOImpl coatMeasurementModel = new CoatMeasurementDAOImpl();
-    TailorDAOImpl tailorDAOImpl = new TailorDAOImpl();
+    ItemBo itemBo = (ItemBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.ITEM);
+    ShirtMeasurementBo shirtMeasurementDAOImpl = (ShirtMeasurementBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.SHIRTMEASUREMENT);
+    TrouserBo trouserDAOImpl = (TrouserBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.TROUSER);
+    CoatMeasurementBo coatMeasurementModel = (CoatMeasurementBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.COATMEASUREMENT);
+    TailorBo tailorDAOImpl = (TailorBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.TAILOR);
 
     private ObservableList<OrderCartTm> obList = FXCollections.observableArrayList();
 
@@ -154,7 +156,7 @@ public class PlaceOrderFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<ItemDto> idList = itemDAOImpl.getAllItemId();
+            List<ItemDto> idList = itemBo.getAllItemId();
             for (ItemDto dto : idList){
                 obList.add(dto.getType());
             }
@@ -273,7 +275,7 @@ public class PlaceOrderFormController {
         PlaceOrderDto placeOrderDto = new PlaceOrderDto(orderId,date,customerId,tailorId,fullAmount,advance,balance,status,completeDate,orderCartTmList);
 
         try {
-            boolean isSuccess = placeOrderFormModel.placeOrder(placeOrderDto);
+            boolean isSuccess = placeOrderDAOImpl.placeOrder(placeOrderDto);
             if (isSuccess){
                 new Alert(Alert.AlertType.CONFIRMATION, "Order Success!").show();
                 Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/order_form.fxml"));
@@ -304,7 +306,7 @@ public class PlaceOrderFormController {
         String item =cmbItem.getValue();
         String id = lblCustomerId.getText();
         String type = cmbItem.getValue();
-        ItemDto itemDto = itemDAOImpl.search(type);
+        ItemDto itemDto = itemBo.search(type);
         if (item.equals("SHIRT")){
             if (itemDto !=null){
                 lblItrmId.setText(itemDto.getItemId());

@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.rms.bo.BOFactory;
+import lk.ijse.rms.bo.custom.CustomerBo;
 import lk.ijse.rms.dto.CustomerDto;
 import lk.ijse.rms.dto.tm.CustomerTm;
 import lk.ijse.rms.dao.custom.impl.CustomerDAOImpl;
@@ -60,7 +62,7 @@ public class CustomerFormController {
     @FXML
     private Label lblCustomerId;
 
-    CustomerDAOImpl customerModel = new CustomerDAOImpl();
+    CustomerBo customerModel = (CustomerBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.CUSTOMER);
 
     public  void initialize(){
         genarateNextCustomerId();

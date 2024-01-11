@@ -4,6 +4,7 @@ import lk.ijse.rms.dao.SQLUtil;
 import lk.ijse.rms.dao.custom.ShirtMeasurementDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.ShirtDto;
+import lk.ijse.rms.entity.Shirt;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ShirtMeasurementDAOImpl implements ShirtMeasurementDAO {
-    public boolean save(ShirtDto shirtDto) throws SQLException, ClassNotFoundException {
+    public boolean save(Shirt entity) throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //        String sql = "INSERT INTO shirtMeasurements VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 //        PreparedStatement pstm = connection.prepareStatement(sql);
@@ -30,7 +31,7 @@ public class ShirtMeasurementDAOImpl implements ShirtMeasurementDAO {
 //
 //        return pstm.executeUpdate() > 0;
 
-        return SQLUtil.execute("INSERT INTO shirtMeasurements VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",shirtDto.getSmId(),shirtDto.getCustomerId(),shirtDto.getDate(),shirtDto.getLength(),shirtDto.getChest(),shirtDto.getShoulder(),shirtDto.getSleeveLength(),shirtDto.getCollar(),shirtDto.getCuff(),shirtDto.getWaist());
+        return SQLUtil.execute("INSERT INTO shirtMeasurements VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",entity.getSmId(),entity.getCustomerId(),entity.getDate(),entity.getLength(),entity.getChest(),entity.getShoulder(),entity.getSleeveLength(),entity.getCollar(),entity.getCuff(),entity.getWaist());
 
     }
 
@@ -61,7 +62,7 @@ public class ShirtMeasurementDAOImpl implements ShirtMeasurementDAO {
         }
     }
 
-    public ShirtDto search(String shirtM) throws SQLException, ClassNotFoundException {
+    public Shirt search(String shirtM) throws SQLException, ClassNotFoundException {
 //        Connection connection=DbConnection.getInstance().getConnection();
 //        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM shirtMeasurements WHERE customerId = ?");
 //
@@ -70,9 +71,9 @@ public class ShirtMeasurementDAOImpl implements ShirtMeasurementDAO {
 //        ResultSet resultSet = pstm.executeQuery();
 //
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM shirtMeasurements WHERE customerId = ?",shirtM);
-        ShirtDto shirtDto = null;
+        Shirt entitylist = null;
         if (resultSet.next()){
-            shirtDto=new ShirtDto(
+            entitylist=new Shirt(
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
@@ -85,27 +86,12 @@ public class ShirtMeasurementDAOImpl implements ShirtMeasurementDAO {
                     resultSet.getString(10)
             );
         }
-        return shirtDto;
+        return entitylist;
     }
 
-    public boolean update(ShirtDto shirtDto) throws SQLException, ClassNotFoundException {
-//        Connection connection =DbConnection.getInstance().getConnection();;
-//        PreparedStatement pstm = connection.prepareStatement("UPDATE shirtMeasurements SET smId=?,date=?,length=?,chest=?,shoulder=?,sleeveLength=?,collar=?,cuff=?,waist=? WHERE customerId=?");
-//
-//        pstm.setString(1,shirtDto.getSmId());
-//        pstm.setString(2,shirtDto.getDate());
-//        pstm.setString(3,shirtDto.getLength());
-//        pstm.setString(4,shirtDto.getChest());
-//        pstm.setString(5,shirtDto.getShoulder());
-//        pstm.setString(6,shirtDto.getSleeveLength());
-//        pstm.setString(7,shirtDto.getCollar());
-//        pstm.setString(8,shirtDto.getCuff());
-//        pstm.setString(9,shirtDto.getWaist());
-//        pstm.setString(10,shirtDto.getCustomerId());
-//
-//        return pstm.executeUpdate() > 0;
+    public boolean update(Shirt entity) throws SQLException, ClassNotFoundException {
 
-        return SQLUtil.execute("UPDATE shirtMeasurements SET smId=?,date=?,length=?,chest=?,shoulder=?,sleeveLength=?,collar=?,cuff=?,waist=? WHERE customerId=?",shirtDto.getSmId(),shirtDto.getDate(),shirtDto.getLength(),shirtDto.getChest(),shirtDto.getShoulder(),shirtDto.getSleeveLength(),shirtDto.getCollar(),shirtDto.getCuff(),shirtDto.getWaist(),shirtDto.getCustomerId());
+        return SQLUtil.execute("UPDATE shirtMeasurements SET smId=?,date=?,length=?,chest=?,shoulder=?,sleeveLength=?,collar=?,cuff=?,waist=? WHERE customerId=?",entity.getSmId(),entity.getDate(),entity.getLength(),entity.getChest(),entity.getShoulder(),entity.getSleeveLength(),entity.getCollar(),entity.getCuff(),entity.getWaist(),entity.getCustomerId());
 
 
     }
@@ -116,7 +102,7 @@ public class ShirtMeasurementDAOImpl implements ShirtMeasurementDAO {
     }
 
     @Override
-    public List<ShirtDto> getAll() throws SQLException, ClassNotFoundException {
+    public List<Shirt> getAll() throws SQLException, ClassNotFoundException {
         return null;
     }
 

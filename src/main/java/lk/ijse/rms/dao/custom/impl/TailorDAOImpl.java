@@ -4,6 +4,7 @@ import lk.ijse.rms.dao.SQLUtil;
 import lk.ijse.rms.dao.custom.TailorDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.TailorDto;
+import lk.ijse.rms.entity.Tailor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TailorDAOImpl implements TailorDAO {
-    public boolean save(TailorDto tailorDto) throws SQLException, ClassNotFoundException {
+    public boolean save(Tailor tailorDto) throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //        PreparedStatement pstm =connection.prepareStatement("INSERT INTO tailor VALUES (?,?,?,?,?,?,?)");
 //
@@ -55,7 +56,7 @@ public class TailorDAOImpl implements TailorDAO {
     }
 
 
-    public boolean update(TailorDto tailorDto) throws SQLException, ClassNotFoundException {
+    public boolean update(Tailor tailorDto) throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //        PreparedStatement pstm = connection.prepareStatement("UPDATE  tailor SET firstName =?, lastName=?, tailorNIC=?, address=?, phoneNUmber=?, salary=? WHERE tailorId = ?");
 //
@@ -72,7 +73,7 @@ public class TailorDAOImpl implements TailorDAO {
         return SQLUtil.execute("UPDATE  tailor SET firstName =?, lastName=?, tailorNIC=?, address=?, phoneNUmber=?, salary=? WHERE tailorId = ?",tailorDto.getFirstName(),tailorDto.getLastName(),tailorDto.getTailorNIC(),tailorDto.getAddress(),tailorDto.getPhoneNumber(),tailorDto.getSalary(),tailorDto.getTailorId());
     }
 
-    public TailorDto search(String tailorId) throws SQLException, ClassNotFoundException {
+    public Tailor search(String tailorId) throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM tailor WHERE tailorId = ?");
 //
@@ -81,10 +82,10 @@ public class TailorDAOImpl implements TailorDAO {
 //        ResultSet resultSet = pstm.executeQuery();
 
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM tailor WHERE tailorId = ?",tailorId);
-        TailorDto tailorDto=null;
+        Tailor entitylist=null;
 
         if (resultSet.next()){
-            tailorDto= new TailorDto(
+            entitylist= new Tailor(
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
@@ -95,7 +96,7 @@ public class TailorDAOImpl implements TailorDAO {
             );
 
         }
-        return tailorDto;
+        return entitylist;
     }
 
     public boolean delete(String tailorId) throws SQLException, ClassNotFoundException {
@@ -109,7 +110,7 @@ public class TailorDAOImpl implements TailorDAO {
         return SQLUtil.execute("DELETE FROM tailor WHERE tailorId = ?",tailorId);
     }
 
-    public List<TailorDto> getAll() throws SQLException, ClassNotFoundException {
+    public List<Tailor> getAll() throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM tailor");
 //
@@ -117,11 +118,11 @@ public class TailorDAOImpl implements TailorDAO {
 
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM tailor");
 
-        ArrayList<TailorDto> dtoList = new ArrayList<>();
+        ArrayList<Tailor> entitylist = new ArrayList<>();
 
         while (resultSet.next()){
-            dtoList.add(
-                    new TailorDto(
+            entitylist.add(
+                    new Tailor(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3),
@@ -132,10 +133,10 @@ public class TailorDAOImpl implements TailorDAO {
                     )
             );
         }
-        return dtoList;
+        return entitylist;
     }
 
-    public List<TailorDto> getAllMachine() throws SQLException, ClassNotFoundException {
+    public List<Tailor> getAllMachine() throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //        String sql = "SELECT * FROM tailor";
 //        PreparedStatement pstm = connection.prepareStatement(sql);
@@ -143,11 +144,11 @@ public class TailorDAOImpl implements TailorDAO {
 
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM tailor");
 
-        ArrayList<TailorDto> dtoList = new ArrayList<>();
+        ArrayList<Tailor> dtoList = new ArrayList<>();
 
         while(resultSet.next()) {
             dtoList.add(
-                    new TailorDto(
+                    new Tailor(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3),

@@ -8,6 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.rms.bo.BOFactory;
+import lk.ijse.rms.bo.custom.MachineBo;
+import lk.ijse.rms.bo.custom.TailorBo;
 import lk.ijse.rms.dto.MachineDto;
 import lk.ijse.rms.dto.TailorDto;
 import lk.ijse.rms.dto.tm.MachineTm;
@@ -67,9 +70,9 @@ public class MachineFormController {
     @FXML
     private JFXComboBox<String> cmbTailorId;
 
-    private MachineDAOImpl machineDAOImpl =new MachineDAOImpl();
+    MachineBo machineDAOImpl = (MachineBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.MACHINE);
+    TailorBo tailorDAOImpl = (TailorBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.TAILOR);
     private boolean btnClearPressed=false;
-    private TailorDAOImpl tailorDAOImpl =new TailorDAOImpl();
 
     public void initialize(){
         setCellValueFactory();

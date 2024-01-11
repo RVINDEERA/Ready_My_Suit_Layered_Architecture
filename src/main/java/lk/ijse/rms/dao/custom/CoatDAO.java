@@ -2,18 +2,14 @@ package lk.ijse.rms.dao.custom;
 
 import lk.ijse.rms.dto.CoatDto;
 import lk.ijse.rms.dto.tm.CartTm;
+import lk.ijse.rms.entity.Coat;
+
 import java.sql.SQLException;
 import java.util.List;
 
-public interface CoatDAO extends CrudDAO <CoatDto>{
-   // boolean coatDelete(String id) throws SQLException, ClassNotFoundException;
-  //  boolean saveCoat(CoatDto coatDto) throws SQLException, ClassNotFoundException;
-   // String genarateNextMachineId() throws SQLException, ClassNotFoundException;
+public interface CoatDAO extends CrudDAO <Coat> {
     String splitCustomerID(String currentCoatID) ;
-  //  public boolean updateCoat(CoatDto coatDto) throws SQLException, ClassNotFoundException;
     boolean updateCoat(List<CartTm> cartTmList) throws SQLException, ClassNotFoundException;
     boolean updateAvailability(String coatId) throws SQLException, ClassNotFoundException;
-   // CoatDto searchCoat(String id) throws SQLException, ClassNotFoundException;
-    //List<CoatDto> getAllCoat() throws SQLException, ClassNotFoundException;
-    List<CoatDto> loadAllItems() throws SQLException, ClassNotFoundException;
+    List<Coat> loadAllItems() throws SQLException, ClassNotFoundException;
 }

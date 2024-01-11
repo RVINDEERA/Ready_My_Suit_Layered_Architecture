@@ -1,5 +1,10 @@
-package lk.ijse.rms.dao;
+package lk.ijse.rms.bo.custom.impl;
 
+import lk.ijse.rms.bo.custom.PlaceOrderBo;
+import lk.ijse.rms.dao.DAOFactory;
+import lk.ijse.rms.dao.custom.ItemDAO;
+import lk.ijse.rms.dao.custom.OrderDAO;
+import lk.ijse.rms.dao.custom.OrderItemDAO;
 import lk.ijse.rms.dao.custom.impl.ItemDAOImpl;
 import lk.ijse.rms.dao.custom.impl.OrderDAOImpl;
 import lk.ijse.rms.dao.custom.impl.OrderItemDAOImpl;
@@ -9,11 +14,11 @@ import lk.ijse.rms.dto.PlaceOrderDto;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class PlaceOrderFormModel {
+public class PlaceOrderBoImpl implements PlaceOrderBo {
 
-    private OrderDAOImpl orderDAOImpl = new OrderDAOImpl();
-    private ItemDAOImpl itemDAOImpl = new ItemDAOImpl();
-    private OrderItemDAOImpl orderItemDAOImpl = new OrderItemDAOImpl();
+    OrderDAO orderDAOImpl = (OrderDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDER);
+    ItemDAO itemDAOImpl = (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
+    OrderItemDAO orderItemDAOImpl = (OrderItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDER_DETAIL);
 
     public boolean placeOrder(PlaceOrderDto placeOrderDto) throws SQLException {
 

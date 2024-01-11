@@ -4,6 +4,7 @@ import lk.ijse.rms.dao.SQLUtil;
 import lk.ijse.rms.dao.custom.FabricDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.FabricDto;
+import lk.ijse.rms.entity.Fabric;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -34,25 +35,25 @@ public class FabricDAOImpl implements FabricDAO {
 
     }
 
-    public boolean save(FabricDto fabricDto) throws SQLException, ClassNotFoundException {
-        return SQLUtil.execute("INSERT INTO fabric VALUES (?,?,?,?,?)",fabricDto.getFabricId(),fabricDto.getName(),fabricDto.getRollqty(),fabricDto.getType(),fabricDto.getColour());
+    public boolean save(Fabric entity) throws SQLException, ClassNotFoundException {
+        return SQLUtil.execute("INSERT INTO fabric VALUES (?,?,?,?,?)",entity.getFabricId(),entity.getName(),entity.getRollqty(),entity.getType(),entity.getColour());
     }
 
     public boolean delete(String id) throws SQLException, ClassNotFoundException {
         return SQLUtil.execute("DELETE FROM fabric WHERE fabricId = ?",id);
     }
 
-    public boolean update(FabricDto fabricDto) throws SQLException, ClassNotFoundException {
+    public boolean update(Fabric fabricDto) throws SQLException, ClassNotFoundException {
         return SQLUtil.execute("UPDATE fabric SET name=?,rollQty=?,type=?,colour=? WHERE fabricId=?",fabricDto.getName(),fabricDto.getRollqty(),fabricDto.getType(),fabricDto.getColour(),fabricDto.getFabricId());
 
     }
 
-    public FabricDto search(String id) throws SQLException, ClassNotFoundException {
+    public Fabric search(String id) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM fabric WHERE fabricId = ?",id);
 
-        FabricDto fabricDto =null;
+        Fabric entitylist =null;
         if (resultSet.next()){
-            fabricDto =new FabricDto(
+            entitylist =new Fabric(
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
@@ -60,17 +61,17 @@ public class FabricDAOImpl implements FabricDAO {
                     resultSet.getString(5)
             );
         }
-        return fabricDto;
+        return entitylist;
 
     }
 
-    public List<FabricDto> getAll() throws SQLException, ClassNotFoundException {
+    public List<Fabric> getAll() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM fabric");
-        ArrayList<FabricDto> dtoList = new ArrayList<>();
+        ArrayList<Fabric> dtoList = new ArrayList<>();
 
         while (resultSet.next()){
             dtoList.add(
-                    new FabricDto(
+                    new Fabric(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3),

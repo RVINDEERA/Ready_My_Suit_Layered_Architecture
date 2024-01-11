@@ -12,6 +12,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.rms.bo.BOFactory;
+import lk.ijse.rms.bo.custom.CustomerBo;
+import lk.ijse.rms.bo.custom.ShirtMeasurementBo;
 import lk.ijse.rms.dto.CustomerDto;
 import lk.ijse.rms.dto.ShirtDto;
 import lk.ijse.rms.dao.custom.impl.CustomerDAOImpl;
@@ -80,9 +83,9 @@ public class ShirtMeasurementFormController {
 
     @FXML
     private TextField txtcustomerid;
-    private CustomerDAOImpl customerModel = new CustomerDAOImpl();
     private AnchorPane paneSelectItem;
-    private ShirtMeasurementDAOImpl shirtMeasurementDAOImpl = new ShirtMeasurementDAOImpl();
+    CustomerBo customerModel = (CustomerBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.CUSTOMER);
+    ShirtMeasurementBo shirtMeasurementDAOImpl = (ShirtMeasurementBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.SHIRTMEASUREMENT);
 
     public  void initialize(){
         generateNextShirtId();

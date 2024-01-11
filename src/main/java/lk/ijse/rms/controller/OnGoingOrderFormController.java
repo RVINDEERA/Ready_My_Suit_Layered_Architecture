@@ -12,6 +12,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.rms.bo.BOFactory;
+import lk.ijse.rms.bo.custom.OrderBo;
 import lk.ijse.rms.dto.OrderDto;
 import lk.ijse.rms.dto.tm.OrderTm;
 import lk.ijse.rms.dao.custom.impl.OrderDAOImpl;
@@ -63,7 +65,7 @@ public class OnGoingOrderFormController {
 
     @FXML
     private TextField txtStatus;
-    private OrderDAOImpl orderDAOImpl = new OrderDAOImpl();
+    OrderBo orderDAOImpl = (OrderBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.ORDER);
 
     public void initialize(){
         setCellValueFactory();

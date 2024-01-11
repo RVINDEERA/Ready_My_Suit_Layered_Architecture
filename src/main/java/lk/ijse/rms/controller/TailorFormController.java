@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.rms.bo.BOFactory;
+import lk.ijse.rms.bo.custom.TailorBo;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.TailorDto;
 import lk.ijse.rms.dto.tm.TailorTm;
@@ -78,7 +80,7 @@ public class TailorFormController {
     private TextField txtTailorId2;
 
 
-    private TailorDAOImpl tailorDAOImpl = new TailorDAOImpl();
+     TailorBo tailorDAOImpl = (TailorBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.TAILOR);
 
     public  void initialize(){
         genarateNextCustomerId();

@@ -8,6 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.rms.bo.BOFactory;
+import lk.ijse.rms.bo.custom.FabricBo;
+import lk.ijse.rms.bo.custom.ItemBo;
 import lk.ijse.rms.dto.*;
 import lk.ijse.rms.dto.tm.FabricTm;
 import lk.ijse.rms.dao.custom.impl.FabricDAOImpl;
@@ -59,9 +62,9 @@ public class FabricFormController {
     @FXML
     private TextField txtSearch;
 
-    FabricDAOImpl fabricDAOImpl = new FabricDAOImpl();
+    FabricBo fabricDAOImpl = (FabricBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.FABRIC);
 
-    ItemDAOImpl itemDAOImpl = new ItemDAOImpl();
+    ItemBo itemDAOImpl = (ItemBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.ITEM);
 
     public void initialize(){
 

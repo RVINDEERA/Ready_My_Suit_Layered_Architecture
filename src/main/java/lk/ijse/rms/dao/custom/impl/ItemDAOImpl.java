@@ -5,6 +5,7 @@ import lk.ijse.rms.dao.custom.ItemDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.ItemDto;
 import lk.ijse.rms.dto.tm.OrderCartTm;
+import lk.ijse.rms.entity.Item;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,13 +20,13 @@ public class ItemDAOImpl implements ItemDAO {
         return null;
     }
 
-    public boolean save(ItemDto itemDto) throws SQLException, ClassNotFoundException {
+    public boolean save(Item itemDto) throws SQLException, ClassNotFoundException {
 
         return SQLUtil.execute("INSERT INTO item VALUES (?,?)",itemDto.getItemId(),itemDto.getType());
     }
 
     @Override
-    public boolean update(ItemDto dto) throws SQLException, ClassNotFoundException {
+    public boolean update(Item dto) throws SQLException, ClassNotFoundException {
         return false;
     }
 
@@ -35,14 +36,14 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
 
-    public List<ItemDto> getAll() throws SQLException, ClassNotFoundException {
+    public List<Item> getAll() throws SQLException, ClassNotFoundException {
 
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM item");
 
-        ArrayList<ItemDto> dtoList = new ArrayList<>();
+        ArrayList<Item> dtoList = new ArrayList<>();
         while(resultSet.next()) {
             dtoList.add(
-                    new ItemDto(
+                    new Item(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getInt(3)
@@ -53,13 +54,13 @@ public class ItemDAOImpl implements ItemDAO {
         return dtoList;
     }
 
-    public List<ItemDto> getAllItemId() throws SQLException, ClassNotFoundException {
+    public List<Item> getAllItemId() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM item");
 
-        ArrayList<ItemDto> dtoList = new ArrayList<>();
+        ArrayList<Item> entitylist = new ArrayList<>();
         while(resultSet.next()) {
-            dtoList.add(
-                    new ItemDto(
+            entitylist.add(
+                    new Item(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getInt(3)
@@ -67,15 +68,15 @@ public class ItemDAOImpl implements ItemDAO {
                     )
             );
         }
-        return dtoList;
+        return entitylist;
     }
 
-    public ItemDto search(String type) throws SQLException, ClassNotFoundException {
+    public Item search(String type) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM item WHERE type= ?",type);
 
-        ItemDto itemDto = null;
+        Item itemDto = null;
         if (resultSet.next()){
-            itemDto = new ItemDto(
+            itemDto = new Item(
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getInt(3)
@@ -97,14 +98,6 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     public boolean updateItemCount(String itemId, int count) throws SQLException, ClassNotFoundException {
-//        Connection connection = DbConnection.getInstance().getConnection();
-//
-//        PreparedStatement pstm = connection.prepareStatement("UPDATE item SET count = count + ? where itemId = ? ");
-//
-//        pstm.setInt(1, count);
-//        pstm.setString(2, itemId);
-//
-//        return pstm.executeUpdate() > 0;
 
         return SQLUtil.execute("UPDATE item SET count = count + ? where itemId = ? ",itemId,count);
 

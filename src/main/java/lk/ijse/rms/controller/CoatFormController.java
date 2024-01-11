@@ -7,6 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.rms.bo.BOFactory;
+import lk.ijse.rms.bo.custom.CoatBo;
+import lk.ijse.rms.dao.custom.CoatDAO;
 import lk.ijse.rms.dto.CoatDto;
 import lk.ijse.rms.dto.tm.CoatTm;
 import lk.ijse.rms.dao.custom.impl.CoatDAOImpl;
@@ -70,7 +73,7 @@ public class CoatFormController {
     @FXML
     private Label lblmfgDatetoset;
 
-    CoatDAOImpl coatDAOImpl = new CoatDAOImpl();
+    CoatBo coatDAOImpl = (CoatBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.COAT);
 
     public void initialize(){
         genarateNextCoatId();

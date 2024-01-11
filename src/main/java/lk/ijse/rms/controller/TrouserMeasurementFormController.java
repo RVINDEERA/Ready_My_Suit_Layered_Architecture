@@ -11,6 +11,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.rms.bo.BOFactory;
+import lk.ijse.rms.bo.custom.CustomerBo;
+import lk.ijse.rms.bo.custom.TrouserBo;
 import lk.ijse.rms.dto.CustomerDto;
 import lk.ijse.rms.dto.TrouserDto;
 import lk.ijse.rms.dao.custom.impl.CustomerDAOImpl;
@@ -76,9 +79,9 @@ public class TrouserMeasurementFormController {
     @FXML
     private TextField txtlength;
 
-    private TrouserDAOImpl trouserDAOImpl = new TrouserDAOImpl();
+    TrouserBo trouserDAOImpl = (TrouserBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.TROUSER);
 
-    private CustomerDAOImpl customerModel = new CustomerDAOImpl();
+    CustomerBo customerModel = (CustomerBo) BOFactory.getBoFactory().getDAO(BOFactory.Botypes.CUSTOMER);
 
     public void initialize(){
         generateNextTrouserId();
@@ -93,7 +96,7 @@ public class TrouserMeasurementFormController {
 
         try {
             String previousTrouserID = lblMeasurementId.getText();
-            String trouserId = trouserDAOImpl.generateNextId();
+            String trouserId = trouserDAOImpl.generateNextID();
             lblMeasurementId.setText(trouserId);
             clearFields();
             if (btnClearPressed){

@@ -4,6 +4,7 @@ import lk.ijse.rms.dao.SQLUtil;
 import lk.ijse.rms.dao.custom.OrderDAO;
 import lk.ijse.rms.db.DbConnection;
 import lk.ijse.rms.dto.OrderDto;
+import lk.ijse.rms.entity.Order;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,12 +32,12 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public boolean save(OrderDto dto) throws SQLException, ClassNotFoundException {
+    public boolean save(Order entity) throws SQLException, ClassNotFoundException {
         return false;
     }
 
     @Override
-    public boolean update(OrderDto dto) throws SQLException, ClassNotFoundException {
+    public boolean update(Order entity) throws SQLException, ClassNotFoundException {
         return false;
     }
 
@@ -79,7 +80,7 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
 
-    public List<OrderDto> getAll() throws SQLException, ClassNotFoundException {
+    public List<Order> getAll() throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection();
 //
 //        String sql = "SELECT * FROM orders";
@@ -89,11 +90,11 @@ public class OrderDAOImpl implements OrderDAO {
 
         ResultSet resultSet = SQLUtil.execute("SELECT * FROM orders");
 
-        ArrayList<OrderDto> dtoList = new ArrayList<>();
+        ArrayList<Order> dtoList = new ArrayList<>();
 
         while(resultSet.next()) {
             dtoList.add(
-                    new OrderDto(
+                    new Order(
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3),
@@ -123,7 +124,7 @@ public class OrderDAOImpl implements OrderDAO {
         return SQLUtil.execute("UPDATE orders SET  status = ? WHERE orderId = ?",status,id);
     }
 
-    public OrderDto search(String id) throws SQLException, ClassNotFoundException {
+    public Order search(String id) throws SQLException, ClassNotFoundException {
 //        Connection connection = DbConnection.getInstance().getConnection ();
 //
 //        String sql = "SELECT * FROM orders WHERE orderId = ?";
@@ -134,7 +135,7 @@ public class OrderDAOImpl implements OrderDAO {
 
         ResultSet resultSet = SQLUtil.execute( "SELECT * FROM orders WHERE orderId = ?",id);
 
-        OrderDto dto = null;
+        Order dto = null;
         if(resultSet.next()) {
             String orderId = resultSet.getString(1);
             String date = resultSet.getString(2);
@@ -147,7 +148,7 @@ public class OrderDAOImpl implements OrderDAO {
             String completeDate = resultSet.getString(9);
 
 
-            dto = new OrderDto(orderId,date,customerId,tailorId,fullAmount,advance,balance,status,completeDate);
+            dto = new Order(orderId,date,customerId,tailorId,fullAmount,advance,balance,status,completeDate);
         }
         return dto;
     }
